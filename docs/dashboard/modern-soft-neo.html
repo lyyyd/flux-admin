@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
@@ -32,7 +32,7 @@
 
       body {
         margin: 0;
-        font-family: 'Plus Jakarta Sans', 'Space Grotesk', sans-serif;
+        font-family: "Plus Jakarta Sans", "Space Grotesk", sans-serif;
         background: var(--cloud);
         color: var(--ink);
         min-height: 100vh;
@@ -40,7 +40,8 @@
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        background-image: radial-gradient(circle at 20% 20%, #ffffff 0%, transparent 45%),
+        background-image:
+          radial-gradient(circle at 20% 20%, #ffffff 0%, transparent 45%),
           radial-gradient(circle at 80% 0%, #f2ecff 0%, transparent 40%),
           linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
       }
@@ -76,10 +77,14 @@
         width: 52px;
         height: 52px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--lavender-600), var(--soft-pink));
+        background: linear-gradient(
+          135deg,
+          var(--lavender-600),
+          var(--soft-pink)
+        );
         display: grid;
         place-items: center;
-        font-family: 'Space Grotesk', sans-serif;
+        font-family: "Space Grotesk", sans-serif;
         color: #fff;
         font-weight: 600;
       }
@@ -94,7 +99,9 @@
         background: rgba(140, 124, 240, 0.05);
         box-shadow: inset 0 0 0 1px rgba(140, 124, 240, 0.12);
         font-size: 1.2rem;
-        transition: transform 0.35s ease, background 0.35s ease;
+        transition:
+          transform 0.35s ease,
+          background 0.35s ease;
       }
 
       .nav-item.active {
@@ -116,7 +123,11 @@
       .hero-card {
         border-radius: 2rem;
         padding: 2.5rem;
-        background: linear-gradient(135deg, rgba(140, 124, 240, 0.93), rgba(198, 185, 255, 0.9));
+        background: linear-gradient(
+          135deg,
+          rgba(140, 124, 240, 0.93),
+          rgba(198, 185, 255, 0.9)
+        );
         color: #fff;
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
@@ -154,13 +165,22 @@
       .hero-illustration {
         position: relative;
         border-radius: 1.5rem;
-        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.55), transparent 65%),
-          linear-gradient(160deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+        background:
+          radial-gradient(
+            circle at 30% 30%,
+            rgba(255, 255, 255, 0.55),
+            transparent 65%
+          ),
+          linear-gradient(
+            160deg,
+            rgba(255, 255, 255, 0.25),
+            rgba(255, 255, 255, 0.05)
+          );
         overflow: hidden;
       }
 
       .hero-illustration::after {
-        content: '';
+        content: "";
         position: absolute;
         inset: 1rem;
         border-radius: 1.2rem;
@@ -195,7 +215,11 @@
       .soft-card {
         border-radius: 1.5rem;
         padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(247, 245, 255, 0.95));
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.9),
+          rgba(247, 245, 255, 0.95)
+        );
         box-shadow: 0 25px 60px rgba(47, 42, 63, 0.08);
         display: flex;
         flex-direction: column;
@@ -224,27 +248,31 @@
         display: block;
         height: 100%;
         border-radius: inherit;
-        background: linear-gradient(90deg, var(--lavender-600), var(--soft-pink));
+        background: linear-gradient(
+          90deg,
+          var(--lavender-600),
+          var(--soft-pink)
+        );
       }
 
-      .soft-progress[data-progress='72'] span {
+      .soft-progress[data-progress="72"] span {
         width: 72%;
       }
 
-      .soft-progress[data-progress='54'] {
+      .soft-progress[data-progress="54"] {
         background: rgba(255, 206, 209, 0.35);
       }
 
-      .soft-progress[data-progress='54'] span {
+      .soft-progress[data-progress="54"] span {
         width: 54%;
         background: linear-gradient(90deg, #ffb5d2, #ffd2b5);
       }
 
-      .soft-progress[data-progress='88'] {
+      .soft-progress[data-progress="88"] {
         background: rgba(176, 240, 210, 0.4);
       }
 
-      .soft-progress[data-progress='88'] span {
+      .soft-progress[data-progress="88"] span {
         width: 88%;
         background: linear-gradient(90deg, #5cd2a4, #b0f0d2);
       }
@@ -309,7 +337,11 @@
       }
 
       .calendar span.highlight {
-        background: linear-gradient(150deg, var(--lavender-600), var(--soft-pink));
+        background: linear-gradient(
+          150deg,
+          var(--lavender-600),
+          var(--soft-pink)
+        );
         color: #fff;
         font-weight: 600;
         box-shadow: 0 10px 30px rgba(140, 124, 240, 0.35);
@@ -318,7 +350,11 @@
       .schedule-card {
         border-radius: 1.5rem;
         padding: 1.5rem;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 240, 0.9));
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95),
+          rgba(255, 248, 240, 0.9)
+        );
         box-shadow: 0 25px 60px rgba(255, 173, 191, 0.18);
       }
 
@@ -413,8 +449,8 @@
           <div>
             <h1>Soft-Neo Mission Control</h1>
             <p>
-              Gentle gradients meet clear structure. Track launches, creative sprints, and product rituals in a mellow, cloud-soft
-              workspace.
+              Gentle gradients meet clear structure. Track launches, creative
+              sprints, and product rituals in a mellow, cloud-soft workspace.
             </p>
             <div class="hero-stats">
               <div class="hero-pill">
@@ -434,7 +470,13 @@
           <div class="hero-illustration">
             <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="sunrise" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient
+                  id="sunrise"
+                  x1="0%"
+                  y1="0%"
+                  x2="100%"
+                  y2="100%"
+                >
                   <stop offset="0%" stop-color="#ffebb8" />
                   <stop offset="100%" stop-color="#ffd2b5" />
                 </linearGradient>
@@ -444,16 +486,69 @@
                 </linearGradient>
               </defs>
               <rect width="320" height="240" fill="none" />
-              <circle cx="240" cy="70" r="40" fill="url(#sunrise)" opacity="0.7" />
-              <ellipse cx="230" cy="200" rx="120" ry="25" fill="rgba(255,255,255,0.2)" />
-              <path d="M30 190 Q120 90 220 180" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round" />
-              <circle cx="120" cy="110" r="38" fill="#ffeef6" stroke="#ffffff" stroke-width="4" />
+              <circle
+                cx="240"
+                cy="70"
+                r="40"
+                fill="url(#sunrise)"
+                opacity="0.7"
+              />
+              <ellipse
+                cx="230"
+                cy="200"
+                rx="120"
+                ry="25"
+                fill="rgba(255,255,255,0.2)"
+              />
+              <path
+                d="M30 190 Q120 90 220 180"
+                fill="none"
+                stroke="rgba(255,255,255,0.55)"
+                stroke-width="4"
+                stroke-linecap="round"
+              />
+              <circle
+                cx="120"
+                cy="110"
+                r="38"
+                fill="#ffeef6"
+                stroke="#ffffff"
+                stroke-width="4"
+              />
               <circle cx="120" cy="105" r="24" fill="#ffd1de" />
-              <path d="M90 190 Q120 140 150 190" fill="url(#suit)" stroke="#ffffff" stroke-width="6" stroke-linejoin="round" />
+              <path
+                d="M90 190 Q120 140 150 190"
+                fill="url(#suit)"
+                stroke="#ffffff"
+                stroke-width="6"
+                stroke-linejoin="round"
+              />
               <circle cx="120" cy="80" r="8" fill="#fff" />
-              <rect x="60" y="150" width="40" height="60" rx="20" fill="#b0f0d2" opacity="0.7" />
-              <rect x="150" y="150" width="45" height="60" rx="22" fill="#ffeeb8" opacity="0.65" />
-              <path d="M240 130 Q260 110 280 130" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" />
+              <rect
+                x="60"
+                y="150"
+                width="40"
+                height="60"
+                rx="20"
+                fill="#b0f0d2"
+                opacity="0.7"
+              />
+              <rect
+                x="150"
+                y="150"
+                width="45"
+                height="60"
+                rx="22"
+                fill="#ffeeb8"
+                opacity="0.65"
+              />
+              <path
+                d="M240 130 Q260 110 280 130"
+                fill="none"
+                stroke="#fff"
+                stroke-width="5"
+                stroke-linecap="round"
+              />
             </svg>
           </div>
         </section>

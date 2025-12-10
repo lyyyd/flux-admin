@@ -1,797 +1,1137 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Modern Soft-Neo Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --primary: #8C7CF0;
-            --primary-light: #C6B9FF;
-            --primary-fade: #F3F0FF;
-            --accent-green: #4FD1C5;
-            --accent-green-light: #E6FFFA;
-            --accent-orange: #F6AD55;
-            --accent-yellow: #F6E05E;
-            --bg-body: #F7F8FA;
-            --bg-card: #FFFFFF;
-            --text-main: #2D3748;
-            --text-muted: #718096;
-            --text-light: #A0AEC0;
-            --shadow-soft: 0 10px 30px -5px rgba(140, 124, 240, 0.1);
-            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.03);
-            --radius-lg: 24px;
-            --radius-md: 16px;
-            --radius-sm: 12px;
+      :root {
+        --primary: #8c7cf0;
+        --primary-light: #c6b9ff;
+        --primary-fade: #f3f0ff;
+        --accent-green: #4fd1c5;
+        --accent-green-light: #e6fffa;
+        --accent-orange: #f6ad55;
+        --accent-yellow: #f6e05e;
+        --bg-body: #f7f8fa;
+        --bg-card: #ffffff;
+        --text-main: #2d3748;
+        --text-muted: #718096;
+        --text-light: #a0aec0;
+        --shadow-soft: 0 10px 30px -5px rgba(140, 124, 240, 0.1);
+        --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.03);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --radius-sm: 12px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--bg-body);
+        color: var(--text-main);
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+      }
+
+      /* Left Sidebar */
+      .sidebar {
+        width: 80px;
+        background: var(--bg-card);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 0;
+        gap: 32px;
+        box-shadow: var(--shadow-card);
+        z-index: 10;
+      }
+
+      .brand-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--primary-light)
+        );
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0 8px 16px rgba(140, 124, 240, 0.3);
+      }
+
+      .nav-item {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .nav-item:hover {
+        background: var(--primary-fade);
+        color: var(--primary);
+      }
+
+      .nav-item.active {
+        background: var(--primary-fade);
+        color: var(--primary);
+        position: relative;
+      }
+
+      .nav-item.active::after {
+        content: "";
+        position: absolute;
+        left: -16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 24px;
+        background: var(--primary);
+        border-radius: 0 4px 4px 0;
+      }
+
+      .nav-icon {
+        width: 24px;
+        height: 24px;
+        stroke-width: 2;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        padding: 32px;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      /* Stats Row */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+
+      .stat-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        box-shadow: var(--shadow-card);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: transform 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .stat-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon-purple {
+        background: var(--primary-fade);
+        color: var(--primary);
+      }
+      .icon-blue {
+        background: #ebf8ff;
+        color: #4299e1;
+      }
+      .icon-green {
+        background: #f0fff4;
+        color: #48bb78;
+      }
+      .icon-orange {
+        background: #fffaf0;
+        color: #ed8936;
+      }
+
+      .stat-trend {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .trend-up {
+        background: var(--accent-green-light);
+        color: #38b2ac;
+      }
+      .trend-neutral {
+        background: #edf2f7;
+        color: var(--text-muted);
+      }
+
+      .stat-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .stat-label {
+        font-size: 14px;
+        color: var(--text-muted);
+      }
+
+      /* Middle Section */
+      .middle-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 24px;
+        min-height: 360px;
+      }
+
+      .chart-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        box-shadow: var(--shadow-card);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .card-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+      }
+
+      .card-subtitle {
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-top: 4px;
+      }
+
+      .chart-controls {
+        display: flex;
+        gap: 8px;
+      }
+
+      .control-btn {
+        padding: 6px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        border: none;
+        background: #edf2f7;
+        color: var(--text-muted);
+      }
+
+      .control-btn.active {
+        background: var(--primary);
+        color: white;
+      }
+
+      /* Robot Card */
+      .robot-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        box-shadow: var(--shadow-card);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ai-badge {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--accent-green);
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+      }
+
+      .robot-illustration {
+        margin: 24px 0;
+        height: 160px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .robot-btn {
+        width: 100%;
+        padding: 14px;
+        border-radius: var(--radius-md);
+        border: 1px solid #e2e8f0;
+        background: white;
+        color: var(--text-main);
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .robot-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+      }
+
+      /* Bottom Status Row */
+      .status-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .status-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .status-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #f7fafc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: var(--text-muted);
+      }
+
+      .status-info h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .status-indicator {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: var(--text-muted);
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+      }
+
+      .dot-green {
+        background: #48bb78;
+      }
+      .dot-blue {
+        background: #4299e1;
+      }
+
+      /* Right Sidebar */
+      .right-panel {
+        width: 320px;
+        background: var(--bg-card);
+        padding: 32px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        border-left: 1px solid #f0f0f0;
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .panel-title {
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      /* Calendar */
+      .calendar-widget {
+        background: white;
+      }
+
+      .cal-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 8px;
+        text-align: center;
+      }
+
+      .cal-day-name {
+        font-size: 12px;
+        color: var(--text-light);
+        margin-bottom: 8px;
+      }
+
+      .cal-day {
+        font-size: 13px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        cursor: pointer;
+        color: var(--text-main);
+      }
+
+      .cal-day:hover {
+        background: #f7fafc;
+      }
+
+      .cal-day.active {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 4px 10px rgba(140, 124, 240, 0.4);
+      }
+
+      /* Timeline */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .timeline-item {
+        display: flex;
+        gap: 12px;
+      }
+
+      .timeline-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .bg-green-light {
+        background: #f0fff4;
+        color: #48bb78;
+      }
+      .bg-orange-light {
+        background: #fffaf0;
+        color: #ed8936;
+      }
+
+      .timeline-content h5 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 4px;
+      }
+
+      .timeline-content p {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.4;
+      }
+
+      .timeline-time {
+        font-size: 11px;
+        color: var(--text-light);
+        margin-top: 4px;
+        display: block;
+      }
+
+      /* System Load Card */
+      .load-card {
+        background: linear-gradient(135deg, #f3f0ff, #ebf4ff);
+        border-radius: var(--radius-md);
+        padding: 20px;
+        margin-top: auto;
+      }
+
+      .load-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      .load-status {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      .load-badge {
+        font-size: 10px;
+        background: white;
+        padding: 2px 6px;
+        border-radius: 4px;
+        color: var(--text-muted);
+      }
+
+      /* SVG Charts */
+      .chart-container {
+        width: 100%;
+        height: 240px;
+        position: relative;
+      }
+
+      svg {
+        overflow: visible;
+      }
+
+      /* Animations */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        50% {
+          transform: translateY(-10px);
         }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
+        100% {
+          transform: translateY(0px);
         }
-
-        /* Left Sidebar */
-        .sidebar {
-            width: 80px;
-            background: var(--bg-card);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 32px 0;
-            gap: 32px;
-            box-shadow: var(--shadow-card);
-            z-index: 10;
-        }
-
-        .brand-icon {
-            width: 48px;
-            height: 48px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-            box-shadow: 0 8px 16px rgba(140, 124, 240, 0.3);
-        }
-
-        .nav-item {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item:hover {
-            background: var(--primary-fade);
-            color: var(--primary);
-        }
-
-        .nav-item.active {
-            background: var(--primary-fade);
-            color: var(--primary);
-            position: relative;
-        }
-
-        .nav-item.active::after {
-            content: '';
-            position: absolute;
-            left: -16px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 4px;
-            height: 24px;
-            background: var(--primary);
-            border-radius: 0 4px 4px 0;
-        }
-
-        .nav-icon {
-            width: 24px;
-            height: 24px;
-            stroke-width: 2;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 32px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        /* Stats Row */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .stat-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-soft);
-        }
-
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .stat-icon-box {
-            width: 48px;
-            height: 48px;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .icon-purple { background: var(--primary-fade); color: var(--primary); }
-        .icon-blue { background: #EBF8FF; color: #4299E1; }
-        .icon-green { background: #F0FFF4; color: #48BB78; }
-        .icon-orange { background: #FFFAF0; color: #ED8936; }
-
-        .stat-trend {
-            font-size: 12px;
-            font-weight: 600;
-            padding: 4px 8px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .trend-up { background: var(--accent-green-light); color: #38B2AC; }
-        .trend-neutral { background: #EDF2F7; color: var(--text-muted); }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-
-        /* Middle Section */
-        .middle-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-            min-height: 360px;
-        }
-
-        .chart-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .card-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .card-subtitle {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .chart-controls {
-            display: flex;
-            gap: 8px;
-        }
-
-        .control-btn {
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            background: #EDF2F7;
-            color: var(--text-muted);
-        }
-
-        .control-btn.active {
-            background: var(--primary);
-            color: white;
-        }
-
-        /* Robot Card */
-        .robot-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            box-shadow: var(--shadow-card);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .ai-badge {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--accent-green);
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-
-        .robot-illustration {
-            margin: 24px 0;
-            height: 160px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .robot-btn {
-            width: 100%;
-            padding: 14px;
-            border-radius: var(--radius-md);
-            border: 1px solid #E2E8F0;
-            background: white;
-            color: var(--text-main);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .robot-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* Bottom Status Row */
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .status-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            box-shadow: var(--shadow-card);
-        }
-
-        .status-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: #F7FAFC;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--text-muted);
-        }
-
-        .status-info h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .status-indicator {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .dot-green { background: #48BB78; }
-        .dot-blue { background: #4299E1; }
-
-        /* Right Sidebar */
-        .right-panel {
-            width: 320px;
-            background: var(--bg-card);
-            padding: 32px 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
-            border-left: 1px solid #F0F0F0;
-        }
-
-        .panel-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .panel-title {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        /* Calendar */
-        .calendar-widget {
-            background: white;
-        }
-
-        .cal-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        .cal-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-            text-align: center;
-        }
-
-        .cal-day-name {
-            font-size: 12px;
-            color: var(--text-light);
-            margin-bottom: 8px;
-        }
-
-        .cal-day {
-            font-size: 13px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            cursor: pointer;
-            color: var(--text-main);
-        }
-
-        .cal-day:hover {
-            background: #F7FAFC;
-        }
-
-        .cal-day.active {
-            background: var(--primary);
-            color: white;
-            box-shadow: 0 4px 10px rgba(140, 124, 240, 0.4);
-        }
-
-        /* Timeline */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 12px;
-        }
-
-        .timeline-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .bg-green-light { background: #F0FFF4; color: #48BB78; }
-        .bg-orange-light { background: #FFFAF0; color: #ED8936; }
-
-        .timeline-content h5 {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .timeline-content p {
-            font-size: 12px;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
-
-        .timeline-time {
-            font-size: 11px;
-            color: var(--text-light);
-            margin-top: 4px;
-            display: block;
-        }
-
-        /* System Load Card */
-        .load-card {
-            background: linear-gradient(135deg, #F3F0FF, #EBF4FF);
-            border-radius: var(--radius-md);
-            padding: 20px;
-            margin-top: auto;
-        }
-
-        .load-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-
-        .load-status {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .load-badge {
-            font-size: 10px;
-            background: white;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: var(--text-muted);
-        }
-
-        /* SVG Charts */
-        .chart-container {
-            width: 100%;
-            height: 240px;
-            position: relative;
-        }
-
-        svg {
-            overflow: visible;
-        }
-
-        /* Animations */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        .robot-float {
-            animation: float 4s ease-in-out infinite;
-        }
-
+      }
+
+      .robot-float {
+        animation: float 4s ease-in-out infinite;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Left Sidebar -->
     <aside class="sidebar">
-        <div class="brand-icon">+</div>
-        
-        <div class="nav-item active">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        </div>
-        <div class="nav-item">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-        </div>
-        <div class="nav-item">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-        </div>
-        <div class="nav-item">
-            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-        </div>
+      <div class="brand-icon">+</div>
+
+      <div class="nav-item active">
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+      </div>
+      <div class="nav-item">
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </div>
+      <div class="nav-item">
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+          ></path>
+          <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+          <line x1="12" y1="22.08" x2="12" y2="12"></line>
+        </svg>
+      </div>
+      <div class="nav-item">
+        <svg
+          class="nav-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        </svg>
+      </div>
     </aside>
 
     <!-- Main Content -->
     <main class="main-content">
-        
-        <!-- Stats Row -->
-        <div class="stats-grid">
-            <!-- Card 1 -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon-box icon-purple">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                    </div>
-                    <div class="stat-trend trend-up">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                        +18%
-                    </div>
-                </div>
-                <div>
-                    <div class="stat-value">1.2 TB</div>
-                    <div class="stat-label">Daily Data Throughput</div>
-                </div>
+      <!-- Stats Row -->
+      <div class="stats-grid">
+        <!-- Card 1 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon-box icon-purple">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polygon
+                  points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+                ></polygon>
+              </svg>
             </div>
-
-            <!-- Card 2 -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon-box icon-blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                    </div>
-                    <div class="stat-trend trend-up">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                        +5%
-                    </div>
-                </div>
-                <div>
-                    <div class="stat-value">842k</div>
-                    <div class="stat-label">API Calls</div>
-                </div>
+            <div class="stat-trend trend-up">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+              +18%
             </div>
-
-            <!-- Card 3 -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon-box icon-green">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                    </div>
-                </div>
-                <div>
-                    <div class="stat-value">100%</div>
-                    <div class="stat-label">Data Consistency</div>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="stat-card">
-                <div class="stat-header">
-                    <div class="stat-icon-box icon-orange">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
-                    </div>
-                </div>
-                <div>
-                    <div class="stat-value">450 GB</div>
-                    <div class="stat-label">Cold Storage Used</div>
-                </div>
-            </div>
+          </div>
+          <div>
+            <div class="stat-value">1.2 TB</div>
+            <div class="stat-label">Daily Data Throughput</div>
+          </div>
         </div>
 
-        <!-- Middle Section -->
-        <div class="middle-grid">
-            <!-- Chart Card -->
-            <div class="chart-card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-title">Cross-system Data Flow</div>
-                        <div class="card-subtitle">Real-time API requests and error rates</div>
-                    </div>
-                    <div class="chart-controls">
-                        <button class="control-btn active">Traffic</button>
-                        <button class="control-btn">Latency</button>
-                    </div>
-                </div>
-                <div class="chart-container">
-                    <!-- Simulated Area Chart -->
-                    <svg width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 600 200">
-                        <defs>
-                            <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#8C7CF0" stop-opacity="0.3"/>
-                                <stop offset="100%" stop-color="#8C7CF0" stop-opacity="0"/>
-                            </linearGradient>
-                        </defs>
-                        <!-- Grid Lines -->
-                        <line x1="0" y1="50" x2="600" y2="50" stroke="#F0F0F0" stroke-dasharray="4"/>
-                        <line x1="0" y1="100" x2="600" y2="100" stroke="#F0F0F0" stroke-dasharray="4"/>
-                        <line x1="0" y1="150" x2="600" y2="150" stroke="#F0F0F0" stroke-dasharray="4"/>
-                        
-                        <!-- The Curve -->
-                        <path d="M0,180 C50,150 100,100 150,120 C200,140 250,160 300,100 C350,40 400,60 450,80 C500,100 550,150 600,180 L600,200 L0,200 Z" fill="url(#chartGradient)"/>
-                        <path d="M0,180 C50,150 100,100 150,120 C200,140 250,160 300,100 C350,40 400,60 450,80 C500,100 550,150 600,180" fill="none" stroke="#8C7CF0" stroke-width="3"/>
-                    </svg>
-                    <!-- Y-Axis Labels (Absolute positioned) -->
-                    <div style="position: absolute; left: 0; top: 40px; font-size: 10px; color: #A0AEC0;">6000</div>
-                    <div style="position: absolute; left: 0; top: 90px; font-size: 10px; color: #A0AEC0;">4500</div>
-                    <div style="position: absolute; left: 0; top: 140px; font-size: 10px; color: #A0AEC0;">3000</div>
-                    <div style="position: absolute; left: 0; top: 190px; font-size: 10px; color: #A0AEC0;">1500</div>
-                </div>
+        <!-- Card 2 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon-box icon-blue">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
             </div>
-
-            <!-- Robot Card -->
-            <div class="robot-card">
-                <div class="ai-badge">AI Optimization Active</div>
-                <div class="card-title">Intelligent Scheduling</div>
-                <div class="card-subtitle" style="max-width: 200px; margin: 8px auto;">
-                    Load balancing strategy optimized. Auto-processing 45 archive queues.
-                </div>
-                
-                <div class="robot-illustration robot-float">
-                    <!-- Cute Robot SVG -->
-                    <svg width="120" height="140" viewBox="0 0 120 140">
-                        <!-- Body -->
-                        <rect x="35" y="60" width="50" height="60" rx="15" fill="#F3F0FF" stroke="#8C7CF0" stroke-width="2"/>
-                        <!-- Head -->
-                        <rect x="30" y="20" width="60" height="45" rx="12" fill="white" stroke="#8C7CF0" stroke-width="2"/>
-                        <!-- Eyes -->
-                        <circle cx="45" cy="40" r="4" fill="#8C7CF0"/>
-                        <circle cx="75" cy="40" r="4" fill="#8C7CF0"/>
-                        <!-- Antenna -->
-                        <line x1="60" y1="20" x2="60" y2="5" stroke="#8C7CF0" stroke-width="2"/>
-                        <circle cx="60" cy="5" r="3" fill="#F6AD55"/>
-                        <!-- Arms -->
-                        <path d="M35 80 C20 80 20 60 25 55" fill="none" stroke="#C6B9FF" stroke-width="3" stroke-linecap="round"/>
-                        <path d="M85 80 C100 80 100 60 95 55" fill="none" stroke="#C6B9FF" stroke-width="3" stroke-linecap="round"/>
-                        <!-- Hands -->
-                        <circle cx="25" cy="55" r="4" fill="#F6E05E"/>
-                        <circle cx="95" cy="55" r="4" fill="#F6E05E"/>
-                        <!-- Shadow -->
-                        <ellipse cx="60" cy="130" rx="30" ry="5" fill="#8C7CF0" opacity="0.1"/>
-                    </svg>
-                </div>
-
-                <button class="robot-btn">View Schedule Log</button>
+            <div class="stat-trend trend-up">
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+              >
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+              +5%
             </div>
+          </div>
+          <div>
+            <div class="stat-value">842k</div>
+            <div class="stat-label">API Calls</div>
+          </div>
         </div>
 
-        <!-- Status Row -->
-        <div class="status-grid">
-            <div class="status-card">
-                <div class="status-icon">HR</div>
-                <div class="status-info">
-                    <h4>HR Core (Workday)</h4>
-                    <div class="status-indicator">
-                        <div class="dot dot-green"></div>
-                        Connection Stable
-                    </div>
-                </div>
+        <!-- Card 3 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon-box icon-green">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
             </div>
-            <div class="status-card">
-                <div class="status-icon">AD</div>
-                <div class="status-info">
-                    <h4>AD Controller (LDAP)</h4>
-                    <div class="status-indicator">
-                        <div class="dot dot-green"></div>
-                        Connection Stable
-                    </div>
-                </div>
-            </div>
-            <div class="status-card">
-                <div class="status-icon">OA</div>
-                <div class="status-info">
-                    <h4>OA Approval (Seeyon)</h4>
-                    <div class="status-indicator">
-                        <div class="dot dot-blue"></div>
-                        Syncing...
-                    </div>
-                </div>
-            </div>
+          </div>
+          <div>
+            <div class="stat-value">100%</div>
+            <div class="stat-label">Data Consistency</div>
+          </div>
         </div>
 
+        <!-- Card 4 -->
+        <div class="stat-card">
+          <div class="stat-header">
+            <div class="stat-icon-box icon-orange">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <div class="stat-value">450 GB</div>
+            <div class="stat-label">Cold Storage Used</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Section -->
+      <div class="middle-grid">
+        <!-- Chart Card -->
+        <div class="chart-card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Cross-system Data Flow</div>
+              <div class="card-subtitle">
+                Real-time API requests and error rates
+              </div>
+            </div>
+            <div class="chart-controls">
+              <button class="control-btn active">Traffic</button>
+              <button class="control-btn">Latency</button>
+            </div>
+          </div>
+          <div class="chart-container">
+            <!-- Simulated Area Chart -->
+            <svg
+              width="100%"
+              height="100%"
+              preserveAspectRatio="none"
+              viewBox="0 0 600 200"
+            >
+              <defs>
+                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#8C7CF0" stop-opacity="0.3" />
+                  <stop offset="100%" stop-color="#8C7CF0" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <!-- Grid Lines -->
+              <line
+                x1="0"
+                y1="50"
+                x2="600"
+                y2="50"
+                stroke="#F0F0F0"
+                stroke-dasharray="4"
+              />
+              <line
+                x1="0"
+                y1="100"
+                x2="600"
+                y2="100"
+                stroke="#F0F0F0"
+                stroke-dasharray="4"
+              />
+              <line
+                x1="0"
+                y1="150"
+                x2="600"
+                y2="150"
+                stroke="#F0F0F0"
+                stroke-dasharray="4"
+              />
+
+              <!-- The Curve -->
+              <path
+                d="M0,180 C50,150 100,100 150,120 C200,140 250,160 300,100 C350,40 400,60 450,80 C500,100 550,150 600,180 L600,200 L0,200 Z"
+                fill="url(#chartGradient)"
+              />
+              <path
+                d="M0,180 C50,150 100,100 150,120 C200,140 250,160 300,100 C350,40 400,60 450,80 C500,100 550,150 600,180"
+                fill="none"
+                stroke="#8C7CF0"
+                stroke-width="3"
+              />
+            </svg>
+            <!-- Y-Axis Labels (Absolute positioned) -->
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                top: 40px;
+                font-size: 10px;
+                color: #a0aec0;
+              "
+            >
+              6000
+            </div>
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                top: 90px;
+                font-size: 10px;
+                color: #a0aec0;
+              "
+            >
+              4500
+            </div>
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                top: 140px;
+                font-size: 10px;
+                color: #a0aec0;
+              "
+            >
+              3000
+            </div>
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                top: 190px;
+                font-size: 10px;
+                color: #a0aec0;
+              "
+            >
+              1500
+            </div>
+          </div>
+        </div>
+
+        <!-- Robot Card -->
+        <div class="robot-card">
+          <div class="ai-badge">AI Optimization Active</div>
+          <div class="card-title">Intelligent Scheduling</div>
+          <div class="card-subtitle" style="max-width: 200px; margin: 8px auto">
+            Load balancing strategy optimized. Auto-processing 45 archive
+            queues.
+          </div>
+
+          <div class="robot-illustration robot-float">
+            <!-- Cute Robot SVG -->
+            <svg width="120" height="140" viewBox="0 0 120 140">
+              <!-- Body -->
+              <rect
+                x="35"
+                y="60"
+                width="50"
+                height="60"
+                rx="15"
+                fill="#F3F0FF"
+                stroke="#8C7CF0"
+                stroke-width="2"
+              />
+              <!-- Head -->
+              <rect
+                x="30"
+                y="20"
+                width="60"
+                height="45"
+                rx="12"
+                fill="white"
+                stroke="#8C7CF0"
+                stroke-width="2"
+              />
+              <!-- Eyes -->
+              <circle cx="45" cy="40" r="4" fill="#8C7CF0" />
+              <circle cx="75" cy="40" r="4" fill="#8C7CF0" />
+              <!-- Antenna -->
+              <line
+                x1="60"
+                y1="20"
+                x2="60"
+                y2="5"
+                stroke="#8C7CF0"
+                stroke-width="2"
+              />
+              <circle cx="60" cy="5" r="3" fill="#F6AD55" />
+              <!-- Arms -->
+              <path
+                d="M35 80 C20 80 20 60 25 55"
+                fill="none"
+                stroke="#C6B9FF"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <path
+                d="M85 80 C100 80 100 60 95 55"
+                fill="none"
+                stroke="#C6B9FF"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <!-- Hands -->
+              <circle cx="25" cy="55" r="4" fill="#F6E05E" />
+              <circle cx="95" cy="55" r="4" fill="#F6E05E" />
+              <!-- Shadow -->
+              <ellipse
+                cx="60"
+                cy="130"
+                rx="30"
+                ry="5"
+                fill="#8C7CF0"
+                opacity="0.1"
+              />
+            </svg>
+          </div>
+
+          <button class="robot-btn">View Schedule Log</button>
+        </div>
+      </div>
+
+      <!-- Status Row -->
+      <div class="status-grid">
+        <div class="status-card">
+          <div class="status-icon">HR</div>
+          <div class="status-info">
+            <h4>HR Core (Workday)</h4>
+            <div class="status-indicator">
+              <div class="dot dot-green"></div>
+              Connection Stable
+            </div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="status-icon">AD</div>
+          <div class="status-info">
+            <h4>AD Controller (LDAP)</h4>
+            <div class="status-indicator">
+              <div class="dot dot-green"></div>
+              Connection Stable
+            </div>
+          </div>
+        </div>
+        <div class="status-card">
+          <div class="status-icon">OA</div>
+          <div class="status-info">
+            <h4>OA Approval (Seeyon)</h4>
+            <div class="status-indicator">
+              <div class="dot dot-blue"></div>
+              Syncing...
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <!-- Right Panel -->
     <aside class="right-panel">
-        <div class="panel-header">
-            <div class="panel-title">Schedule & Notices</div>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A0AEC0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+      <div class="panel-header">
+        <div class="panel-title">Schedule & Notices</div>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="#A0AEC0"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+      </div>
+
+      <!-- Calendar -->
+      <div class="calendar-widget">
+        <div class="cal-header">
+          <span>October 2023</span>
+          <div style="display: flex; gap: 8px">
+            <span style="color: #a0aec0; cursor: pointer">&lt;</span>
+            <span style="color: #a0aec0; cursor: pointer">&gt;</span>
+          </div>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-day-name">S</div>
+          <div class="cal-day-name">M</div>
+          <div class="cal-day-name">T</div>
+          <div class="cal-day-name">W</div>
+          <div class="cal-day-name">T</div>
+          <div class="cal-day-name">F</div>
+          <div class="cal-day-name">S</div>
+
+          <!-- Empty days -->
+          <div></div>
+          <div></div>
+
+          <!-- Days -->
+          <div class="cal-day">1</div>
+          <div class="cal-day">2</div>
+          <div class="cal-day">3</div>
+          <div class="cal-day">4</div>
+          <div class="cal-day">5</div>
+          <div class="cal-day">6</div>
+          <div class="cal-day">7</div>
+          <div class="cal-day">8</div>
+          <div class="cal-day">9</div>
+          <div class="cal-day">10</div>
+          <div class="cal-day">11</div>
+          <div class="cal-day">12</div>
+          <div class="cal-day">13</div>
+          <div class="cal-day">14</div>
+          <div class="cal-day">15</div>
+          <div class="cal-day">16</div>
+          <div class="cal-day">17</div>
+          <div class="cal-day">18</div>
+          <div class="cal-day">19</div>
+          <div class="cal-day">20</div>
+          <div class="cal-day">21</div>
+          <div class="cal-day">22</div>
+          <div class="cal-day">23</div>
+          <div class="cal-day">24</div>
+          <div class="cal-day">25</div>
+          <div class="cal-day">26</div>
+          <div class="cal-day active">27</div>
+          <div class="cal-day">28</div>
+          <div class="cal-day">29</div>
+          <div class="cal-day">30</div>
+        </div>
+      </div>
+
+      <!-- System Messages -->
+      <div>
+        <div class="panel-header" style="margin-bottom: 16px">
+          <div class="panel-title">System Messages</div>
+          <span style="font-size: 12px; color: var(--primary)"
+            >Mark all read</span
+          >
         </div>
 
-        <!-- Calendar -->
-        <div class="calendar-widget">
-            <div class="cal-header">
-                <span>October 2023</span>
-                <div style="display: flex; gap: 8px;">
-                    <span style="color: #A0AEC0; cursor: pointer;">&lt;</span>
-                    <span style="color: #A0AEC0; cursor: pointer;">&gt;</span>
-                </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-icon bg-green-light">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
             </div>
-            <div class="cal-grid">
-                <div class="cal-day-name">S</div>
-                <div class="cal-day-name">M</div>
-                <div class="cal-day-name">T</div>
-                <div class="cal-day-name">W</div>
-                <div class="cal-day-name">T</div>
-                <div class="cal-day-name">F</div>
-                <div class="cal-day-name">S</div>
+            <div class="timeline-content">
+              <h5>Full Sync Complete</h5>
+              <p>HR Master data successfully synced to AD and OA systems.</p>
+              <span class="timeline-time">10 mins ago</span>
+            </div>
+          </div>
 
-                <!-- Empty days -->
-                <div></div><div></div>
-                
-                <!-- Days -->
-                <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div>
-                <div class="cal-day">6</div><div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div>
-                <div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div><div class="cal-day">15</div>
-                <div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div>
-                <div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div>
-                <div class="cal-day">26</div><div class="cal-day active">27</div><div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div>
+          <div class="timeline-item">
+            <div class="timeline-icon bg-orange-light">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
             </div>
+            <div class="timeline-content">
+              <h5>Field Conflict Detected</h5>
+              <p>
+                Employee "Li Hua" mobile number mismatch between CRM and HR.
+              </p>
+              <span class="timeline-time">2 hours ago</span>
+            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- System Messages -->
-        <div>
-            <div class="panel-header" style="margin-bottom: 16px;">
-                <div class="panel-title">System Messages</div>
-                <span style="font-size: 12px; color: var(--primary);">Mark all read</span>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon bg-green-light">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    </div>
-                    <div class="timeline-content">
-                        <h5>Full Sync Complete</h5>
-                        <p>HR Master data successfully synced to AD and OA systems.</p>
-                        <span class="timeline-time">10 mins ago</span>
-                    </div>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-icon bg-orange-light">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                    </div>
-                    <div class="timeline-content">
-                        <h5>Field Conflict Detected</h5>
-                        <p>Employee "Li Hua" mobile number mismatch between CRM and HR.</p>
-                        <span class="timeline-time">2 hours ago</span>
-                    </div>
-                </div>
-            </div>
+      <!-- Load Card -->
+      <div class="load-card">
+        <div class="load-header">
+          <div class="load-status">System Load Normal</div>
+          <div class="load-badge">Auto-Pilot Mode</div>
         </div>
-
-        <!-- Load Card -->
-        <div class="load-card">
-            <div class="load-header">
-                <div class="load-status">System Load Normal</div>
-                <div class="load-badge">Auto-Pilot Mode</div>
-            </div>
-            <div style="height: 4px; background: rgba(255,255,255,0.5); border-radius: 2px; overflow: hidden;">
-                <div style="width: 30%; height: 100%; background: #48BB78;"></div>
-            </div>
+        <div
+          style="
+            height: 4px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 2px;
+            overflow: hidden;
+          "
+        >
+          <div style="width: 30%; height: 100%; background: #48bb78"></div>
         </div>
-
+      </div>
     </aside>
-
-</body>
+  </body>
 </html>
