@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { FieldPath, FieldValues } from 'react-hook-form';
+import { FieldPath, FieldValues } from "react-hook-form";
 import {
   FormControl,
   FormDescription,
@@ -8,15 +8,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { BaseFormFieldProps } from '@/types/base-form';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { BaseFormFieldProps } from "@/types/base-form";
 
 interface FormInputProps<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
 > extends BaseFormFieldProps<TFieldValues, TName> {
-  type?: 'text' | 'email' | 'password' | 'number' | 'tel' | 'url';
+  type?: "text" | "email" | "password" | "number" | "tel" | "url";
   placeholder?: string;
   step?: string | number;
   min?: string | number;
@@ -32,7 +32,7 @@ function FormInput<
   label,
   description,
   required,
-  type = 'text',
+  type = "text",
   placeholder,
   step,
   min,
@@ -49,7 +49,7 @@ function FormInput<
           {label && (
             <FormLabel>
               {label}
-              {required && <span className='ml-1 text-red-500'>*</span>}
+              {required && <span className="ml-1 text-red-500">*</span>}
             </FormLabel>
           )}
           <FormControl>
@@ -62,9 +62,9 @@ function FormInput<
               disabled={disabled}
               {...field}
               onChange={(e) => {
-                if (type === 'number') {
+                if (type === "number") {
                   const value = e.target.value;
-                  field.onChange(value === '' ? undefined : parseFloat(value));
+                  field.onChange(value === "" ? undefined : parseFloat(value));
                 } else {
                   field.onChange(e.target.value);
                 }

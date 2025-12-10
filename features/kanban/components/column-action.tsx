@@ -1,6 +1,6 @@
-'use client';
-import { DotsHorizontalIcon } from '@radix-ui/react-icons';
-import * as React from 'react';
+"use client";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import * as React from "react";
 
 import {
   AlertDialog,
@@ -10,19 +10,19 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle
-} from '@/components/ui/alert-dialog';
-import { Button } from '@/components/ui/button';
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
-import { useTaskStore } from '../utils/store';
-import { UniqueIdentifier } from '@dnd-kit/core';
-import { Input } from '@/components/ui/input';
-import { toast } from 'sonner';
+} from "@/components/ui/dropdown-menu";
+import { useTaskStore } from "../utils/store";
+import { UniqueIdentifier } from "@dnd-kit/core";
+import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 export function ColumnActions({
   title,
@@ -51,19 +51,19 @@ export function ColumnActions({
         <Input
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className='mt-0! mr-auto text-base disabled:cursor-pointer disabled:border-none disabled:opacity-100'
+          className="mt-0! mr-auto text-base disabled:cursor-pointer disabled:border-none disabled:opacity-100"
           disabled={editDisable}
           ref={inputRef}
         />
       </form>
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger asChild>
-          <Button variant='secondary' className='ml-1'>
-            <span className='sr-only'>Actions</span>
-            <DotsHorizontalIcon className='h-4 w-4' />
+          <Button variant="secondary" className="ml-1">
+            <span className="sr-only">Actions</span>
+            <DotsHorizontalIcon className="h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align='end'>
+        <DropdownMenuContent align="end">
           <DropdownMenuItem
             onSelect={() => {
               setIsEditDisable(!editDisable);
@@ -78,7 +78,7 @@ export function ColumnActions({
 
           <DropdownMenuItem
             onSelect={() => setShowDeleteDialog(true)}
-            className='text-red-600'
+            className="text-red-600"
           >
             Delete Section
           </DropdownMenuItem>
@@ -97,14 +97,14 @@ export function ColumnActions({
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <Button
-              variant='destructive'
+              variant="destructive"
               onClick={() => {
                 // yes, you have to set a timeout
-                setTimeout(() => (document.body.style.pointerEvents = ''), 100);
+                setTimeout(() => (document.body.style.pointerEvents = ""), 100);
 
                 setShowDeleteDialog(false);
                 removeCol(id);
-                toast('This column has been deleted.');
+                toast("This column has been deleted.");
               }}
             >
               Delete

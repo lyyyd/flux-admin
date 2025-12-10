@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 /**
  * Fully client-side hook for filtering navigation items based on RBAC
@@ -16,9 +16,9 @@
  * This is only for UI visibility.
  */
 
-import { useMemo } from 'react';
-import { useOrganization, useUser } from '@clerk/nextjs';
-import type { NavItem } from '@/types';
+import { useMemo } from "react";
+import { useOrganization, useUser } from "@clerk/nextjs";
+import type { NavItem } from "@/types";
 
 /**
  * Hook to filter navigation items based on RBAC (fully client-side)

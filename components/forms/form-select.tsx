@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { FieldPath, FieldValues } from 'react-hook-form';
+import { FieldPath, FieldValues } from "react-hook-form";
 import {
   FormControl,
   FormDescription,
@@ -8,15 +8,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form';
+} from "@/components/ui/form";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
-} from '@/components/ui/select';
-import { BaseFormFieldProps, FormOption } from '@/types/base-form';
+} from "@/components/ui/select";
+import { BaseFormFieldProps, FormOption } from "@/types/base-form";
 
 interface FormSelectProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -37,7 +37,7 @@ function FormSelect<
   description,
   required,
   options,
-  placeholder = 'Select an option',
+  placeholder = "Select an option",
   disabled,
   className
 }: FormSelectProps<TFieldValues, TName>) {
@@ -50,7 +50,7 @@ function FormSelect<
           {label && (
             <FormLabel>
               {label}
-              {required && <span className='ml-1 text-red-500'>*</span>}
+              {required && <span className="ml-1 text-red-500">*</span>}
             </FormLabel>
           )}
           <Select

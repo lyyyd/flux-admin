@@ -1,10 +1,10 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@import 'tw-animate-css';
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
-@import './theme.css';
+@import "./theme.css";
 
 :root {
   --radius: 0.625rem;

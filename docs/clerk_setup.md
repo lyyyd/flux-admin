@@ -86,10 +86,10 @@ Clerk Billing costs **0.7% per transaction**, plus transaction fees which are pa
 
 ```typescript
 // Check if organization has a Plan
-const hasPremiumAccess = has({ plan: 'gold' });
+const hasPremiumAccess = has({ plan: "gold" });
 
 // Check if organization has a Feature
-const hasPremiumAccess = has({ feature: 'widgets' });
+const hasPremiumAccess = has({ feature: "widgets" });
 ```
 
 The `has()` method is available on the auth object and checks if the Organization has been granted a specific type of access control (Role, Permission, Feature, or Plan) and returns a boolean value.
@@ -98,7 +98,7 @@ The `has()` method is available on the auth object and checks if the Organizatio
 
 ```tsx
 <Protect
-  plan='bronze'
+  plan="bronze"
   fallback={<p>Only subscribers to the Bronze plan can access this content.</p>}
 >
   <h1>Exclusive Bronze Content</h1>
@@ -109,7 +109,7 @@ Or protect by Feature:
 
 ```tsx
 <Protect
-  feature='premium_access'
+  feature="premium_access"
   fallback={
     <p>
       Only subscribers with the Premium Access feature can access this content.

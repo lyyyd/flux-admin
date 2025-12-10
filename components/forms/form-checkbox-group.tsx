@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { FieldPath, FieldValues } from 'react-hook-form';
+import { FieldPath, FieldValues } from "react-hook-form";
 import {
   FormControl,
   FormDescription,
@@ -8,10 +8,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Badge } from '@/components/ui/badge';
-import { BaseFormFieldProps, CheckboxGroupOption } from '@/types/base-form';
+} from "@/components/ui/form";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Badge } from "@/components/ui/badge";
+import { BaseFormFieldProps, CheckboxGroupOption } from "@/types/base-form";
 
 interface FormCheckboxGroupProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -38,10 +38,10 @@ function FormCheckboxGroup<
   className
 }: FormCheckboxGroupProps<TFieldValues, TName>) {
   const gridCols = {
-    1: 'grid-cols-1',
-    2: 'grid-cols-1 md:grid-cols-2',
-    3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4'
+    1: "grid-cols-1",
+    2: "grid-cols-1 md:grid-cols-2",
+    3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+    4: "grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   };
 
   return (
@@ -53,13 +53,13 @@ function FormCheckboxGroup<
           {label && (
             <FormLabel>
               {label}
-              {required && <span className='ml-1 text-red-500'>*</span>}
+              {required && <span className="ml-1 text-red-500">*</span>}
             </FormLabel>
           )}
           {description && <FormDescription>{description}</FormDescription>}
           <div className={`grid gap-4 ${gridCols[columns]}`}>
             {options.map((option) => (
-              <div key={option.value} className='flex items-center space-x-2'>
+              <div key={option.value} className="flex items-center space-x-2">
                 <FormControl>
                   <Checkbox
                     id={`${name}-${option.value}`}
@@ -81,7 +81,7 @@ function FormCheckboxGroup<
                 </FormControl>
                 <label
                   htmlFor={`${name}-${option.value}`}
-                  className='text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70'
+                  className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                 >
                   {option.label}
                 </label>
@@ -89,11 +89,11 @@ function FormCheckboxGroup<
             ))}
           </div>
           {showBadges && field.value && field.value.length > 0 && (
-            <div className='mt-2 flex flex-wrap gap-2'>
+            <div className="mt-2 flex flex-wrap gap-2">
               {field.value.map((value: string) => {
                 const option = options.find((opt) => opt.value === value);
                 return (
-                  <Badge key={value} variant='secondary'>
+                  <Badge key={value} variant="secondary">
                     {option?.label || value}
                   </Badge>
                 );

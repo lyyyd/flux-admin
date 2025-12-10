@@ -66,7 +66,7 @@ This document explains the fully client-side RBAC (Role-Based Access Control) sy
 ### In Components
 
 ```typescript
-import { useFilteredNavItems } from '@/hooks/use-nav-filter';
+import { useFilteredNavItems } from "@/hooks/use-nav-filter";
 
 function MyComponent() {
   const filteredItems = useFilteredNavItems(navItems);
@@ -92,7 +92,6 @@ Plans and features require Clerk's `has()` function which is server-side only. O
    ```
 
 2. **Show item, protect at page level** (current approach):
-
    - Navigation item is shown
    - Page component checks server-side and redirects/shows error if needed
 

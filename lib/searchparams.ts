@@ -3,7 +3,7 @@ import {
   createSerializer,
   parseAsInteger,
   parseAsString
-} from 'nuqs/server';
+} from "nuqs/server";
 
 export const searchParams = {
   page: parseAsInteger.withDefault(1),

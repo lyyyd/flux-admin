@@ -1,5 +1,5 @@
-import { FileUploaderProps } from '@/components/file-uploader';
-import { Control, FieldPath, FieldValues } from 'react-hook-form';
+import { FileUploaderProps } from "@/components/file-uploader";
+import { Control, FieldPath, FieldValues } from "react-hook-form";
 
 // Base props that all form components will share
 export interface BaseFormFieldProps<
@@ -62,5 +62,5 @@ export interface TextareaConfig {
   maxLength?: number;
   showCharCount?: boolean;
   rows?: number;
-  resize?: 'none' | 'vertical' | 'horizontal' | 'both';
+  resize?: "none" | "vertical" | "horizontal" | "both";
 }

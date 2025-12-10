@@ -1,19 +1,19 @@
-import { create } from 'zustand';
-import { v4 as uuid } from 'uuid';
-import { persist } from 'zustand/middleware';
-import { UniqueIdentifier } from '@dnd-kit/core';
-import { Column } from '../components/board-column';
+import { create } from "zustand";
+import { v4 as uuid } from "uuid";
+import { persist } from "zustand/middleware";
+import { UniqueIdentifier } from "@dnd-kit/core";
+import { Column } from "../components/board-column";
 
-export type Status = 'TODO' | 'IN_PROGRESS' | 'DONE';
+export type Status = "TODO" | "IN_PROGRESS" | "DONE";
 
 const defaultCols = [
   {
-    id: 'TODO' as const,
-    title: 'Todo'
+    id: "TODO" as const,
+    title: "Todo"
   }
 ] satisfies Column[];
 
-export type ColumnId = (typeof defaultCols)[number]['id'];
+export type ColumnId = (typeof defaultCols)[number]["id"];
 
 export type Task = {
   id: string;
@@ -30,14 +30,14 @@ export type State = {
 
 const initialTasks: Task[] = [
   {
-    id: 'task1',
-    status: 'TODO',
-    title: 'Project initiation and planning'
+    id: "task1",
+    status: "TODO",
+    title: "Project initiation and planning"
   },
   {
-    id: 'task2',
-    status: 'TODO',
-    title: 'Gather requirements from stakeholders'
+    id: "task2",
+    status: "TODO",
+    title: "Gather requirements from stakeholders"
   }
 ];
 
@@ -62,7 +62,7 @@ export const useTaskStore = create<State & Actions>()(
         set((state) => ({
           tasks: [
             ...state.tasks,
-            { id: uuid(), title, description, status: 'TODO' }
+            { id: uuid(), title, description, status: "TODO" }
           ]
         })),
       updateCol: (id: UniqueIdentifier, newName: string) =>
@@ -75,7 +75,7 @@ export const useTaskStore = create<State & Actions>()(
         set((state) => ({
           columns: [
             ...state.columns,
-            { title, id: state.columns.length ? title.toUpperCase() : 'TODO' }
+            { title, id: state.columns.length ? title.toUpperCase() : "TODO" }
           ]
         })),
       dragTask: (id: string | null) => set({ draggedTask: id }),
@@ -90,6 +90,6 @@ export const useTaskStore = create<State & Actions>()(
       setTasks: (newTasks: Task[]) => set({ tasks: newTasks }),
       setCols: (newCols: Column[]) => set({ columns: newCols })
     }),
-    { name: 'task-store', skipHydration: true }
+    { name: "task-store", skipHydration: true }
   )
 );

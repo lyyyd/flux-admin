@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { FieldPath, FieldValues } from 'react-hook-form';
+import { FieldPath, FieldValues } from "react-hook-form";
 import {
   FormControl,
   FormDescription,
@@ -8,9 +8,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form';
-import { BaseFormFieldProps, FileUploadConfig } from '@/types/base-form';
-import { FileUploader, FileUploaderProps } from '@/components/file-uploader';
+} from "@/components/ui/form";
+import { BaseFormFieldProps, FileUploadConfig } from "@/types/base-form";
+import { FileUploader, FileUploaderProps } from "@/components/file-uploader";
 
 interface FormFileUploadProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -51,7 +51,7 @@ function FormFileUpload<
           {label && (
             <FormLabel>
               {label}
-              {required && <span className='ml-1 text-red-500'>*</span>}
+              {required && <span className="ml-1 text-red-500">*</span>}
             </FormLabel>
           )}
 

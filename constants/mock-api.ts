@@ -2,8 +2,8 @@
 // 🛑 Nothing in here has anything to do with Nextjs, it's just a fake database
 ////////////////////////////////////////////////////////////////////////////////
 
-import { faker } from '@faker-js/faker';
-import { matchSorter } from 'match-sorter'; // For filtering
+import { faker } from "@faker-js/faker";
+import { matchSorter } from "match-sorter"; // For filtering
 
 export const delay = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
@@ -29,14 +29,14 @@ export const fakeProducts = {
     const sampleProducts: Product[] = [];
     function generateRandomProductData(id: number): Product {
       const categories = [
-        'Electronics',
-        'Furniture',
-        'Clothing',
-        'Toys',
-        'Groceries',
-        'Books',
-        'Jewelry',
-        'Beauty Products'
+        "Electronics",
+        "Furniture",
+        "Clothing",
+        "Toys",
+        "Groceries",
+        "Books",
+        "Jewelry",
+        "Beauty Products"
       ];
 
       return {
@@ -44,7 +44,7 @@ export const fakeProducts = {
         name: faker.commerce.productName(),
         description: faker.commerce.productDescription(),
         created_at: faker.date
-          .between({ from: '2022-01-01', to: '2023-12-31' })
+          .between({ from: "2022-01-01", to: "2023-12-31" })
           .toISOString(),
         price: parseFloat(faker.commerce.price({ min: 5, max: 500, dec: 2 })),
         photo_url: `https://api.slingacademy.com/public/sample-products/${id}.png`,
@@ -81,7 +81,7 @@ export const fakeProducts = {
     // Search functionality across multiple fields
     if (search) {
       products = matchSorter(products, search, {
-        keys: ['name', 'description', 'category']
+        keys: ["name", "description", "category"]
       });
     }
 
@@ -101,7 +101,7 @@ export const fakeProducts = {
     search?: string;
   }) {
     await delay(1000);
-    const categoriesArray = categories ? categories.split('.') : [];
+    const categoriesArray = categories ? categories.split(".") : [];
     const allProducts = await this.getAll({
       categories: categoriesArray,
       search
@@ -119,7 +119,7 @@ export const fakeProducts = {
     return {
       success: true,
       time: currentTime,
-      message: 'Sample data for testing and learning purposes',
+      message: "Sample data for testing and learning purposes",
       total_products: totalProducts,
       offset,
       limit,

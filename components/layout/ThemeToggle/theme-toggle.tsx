@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { IconBrightness } from '@tabler/icons-react';
-import { useTheme } from 'next-themes';
-import * as React from 'react';
+import { IconBrightness } from "@tabler/icons-react";
+import { useTheme } from "next-themes";
+import * as React from "react";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 export function ModeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
 
   const handleThemeToggle = React.useCallback(
     (e?: React.MouseEvent) => {
-      const newMode = resolvedTheme === 'dark' ? 'light' : 'dark';
+      const newMode = resolvedTheme === "dark" ? "light" : "dark";
       const root = document.documentElement;
 
       if (!document.startViewTransition) {
@@ -21,8 +21,8 @@ export function ModeToggle() {
 
       // Set coordinates from the click event
       if (e) {
-        root.style.setProperty('--x', `${e.clientX}px`);
-        root.style.setProperty('--y', `${e.clientY}px`);
+        root.style.setProperty("--x", `${e.clientX}px`);
+        root.style.setProperty("--y", `${e.clientY}px`);
       }
 
       document.startViewTransition(() => {
@@ -34,13 +34,13 @@ export function ModeToggle() {
 
   return (
     <Button
-      variant='secondary'
-      size='icon'
-      className='group/toggle size-8'
+      variant="secondary"
+      size="icon"
+      className="group/toggle size-8"
       onClick={handleThemeToggle}
     >
       <IconBrightness />
-      <span className='sr-only'>Toggle theme</span>
+      <span className="sr-only">Toggle theme</span>
     </Button>
   );
 }

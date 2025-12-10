@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { FieldPath, FieldValues } from 'react-hook-form';
+import { FieldPath, FieldValues } from "react-hook-form";
 import {
   FormControl,
   FormDescription,
@@ -8,9 +8,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form';
-import { Slider } from '@/components/ui/slider';
-import { BaseFormFieldProps, SliderConfig } from '@/types/base-form';
+} from "@/components/ui/form";
+import { Slider } from "@/components/ui/slider";
+import { BaseFormFieldProps, SliderConfig } from "@/types/base-form";
 
 interface FormSliderProps<
   TFieldValues extends FieldValues = FieldValues,
@@ -45,11 +45,11 @@ function FormSlider<
           {label && (
             <FormLabel>
               {label}
-              {required && <span className='ml-1 text-red-500'>*</span>}
+              {required && <span className="ml-1 text-red-500">*</span>}
             </FormLabel>
           )}
           <FormControl>
-            <div className='px-3'>
+            <div className="px-3">
               <Slider
                 min={min}
                 max={max}
@@ -59,7 +59,7 @@ function FormSlider<
                 disabled={disabled}
               />
               {showValue && (
-                <div className='text-muted-foreground mt-1 flex justify-between text-sm'>
+                <div className="text-muted-foreground mt-1 flex justify-between text-sm">
                   <span>{formatValue ? formatValue(min) : min}</span>
                   <span>
                     {formatValue
