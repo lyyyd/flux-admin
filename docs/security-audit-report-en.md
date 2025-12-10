@@ -2,7 +2,7 @@
 
 **Project Name**: flux-admin  
 **Audit Date**: December 10, 2025  
-**Auditor**: GitHub Copilot  
+**Auditor**: David  
 **Report Status**: ✅ Secure
 
 ---
