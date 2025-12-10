@@ -7,6 +7,7 @@ import { UserNav } from "./user-nav";
 import { ThemeSelector } from "../theme-selector";
 import { ModeToggle } from "./ThemeToggle/theme-toggle";
 import CtaGithub from "./cta-github";
+import { ConfigDrawer } from "@/components/config-drawer";
 
 export default function Header() {
   return (
@@ -22,6 +23,7 @@ export default function Header() {
       <div className="flex items-center gap-2 px-4">
         <CtaGithub />
         <ThemeSelector />
+        <ConfigDrawer />
         <ModeToggle />
         <UserNav />
       </div>

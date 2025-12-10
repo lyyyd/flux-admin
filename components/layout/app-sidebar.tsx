@@ -33,6 +33,9 @@ import { navItems } from "@/config/nav-config";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { useOrganization, useUser } from "@clerk/nextjs";
 import { useFilteredNavItems } from "@/hooks/use-nav";
+import { useLayout } from "@/context/layout-provider";
+import { useDirection } from "@/context/direction-provider";
+import { cn } from "@/lib/utils";
 import {
   IconBell,
   IconChevronRight,
@@ -55,13 +58,22 @@ export default function AppSidebar() {
   const { organization } = useOrganization();
   const router = useRouter();
   const filteredItems = useFilteredNavItems(navItems);
+  const { variant, collapsible, sidebarMode } = useLayout();
+  const { dir } = useDirection();
 
   React.useEffect(() => {
     // Side effects based on sidebar state changes
   }, [isOpen]);
 
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar
+      side={dir === "rtl" ? "right" : "left"}
+      variant={variant}
+      collapsible={collapsible}
+      className={cn(
+        sidebarMode === "dark" ? "dark sidebar-dark" : "sidebar-light"
+      )}
+    >
       <SidebarHeader>
         <OrgSwitcher />
       </SidebarHeader>

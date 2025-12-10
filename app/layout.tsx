@@ -32,9 +32,29 @@ export default async function RootLayout({
   const cookieStore = await cookies();
   const activeThemeValue = cookieStore.get("active_theme")?.value;
   const isScaled = activeThemeValue?.endsWith("-scaled");
+  const initialLayout = {
+    variant: cookieStore.get("sidebar-layout-variant")?.value as
+      | "inset"
+      | "floating"
+      | "sidebar"
+      | undefined,
+    collapsible: cookieStore.get("sidebar-layout-collapsible")?.value as
+      | "icon"
+      | "offcanvas"
+      | "none"
+      | undefined,
+    sidebarMode: cookieStore.get("sidebar-layout-sidebar-mode")?.value as
+      | "dark"
+      | "light"
+      | undefined
+  };
+  const initialDir = cookieStore.get("direction")?.value as
+    | "ltr"
+    | "rtl"
+    | undefined;
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" dir={initialDir ?? "ltr"} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -65,7 +85,11 @@ export default async function RootLayout({
             disableTransitionOnChange
             enableColorScheme
           >
-            <Providers activeThemeValue={activeThemeValue as string}>
+            <Providers
+              activeThemeValue={activeThemeValue}
+              initialLayout={initialLayout}
+              initialDir={initialDir}
+            >
               <Toaster />
               {children}
             </Providers>
