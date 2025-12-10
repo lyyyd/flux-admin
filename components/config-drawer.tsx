@@ -385,6 +385,11 @@ function SidebarAppearanceConfig() {
           <RadioGroupItem key={item.value} item={item} isTheme />
         ))}
       </Radio>
+      {darkModeDisabled && (
+        <p className="text-muted-foreground mt-2 text-xs">
+          Inset sidebars always use the light appearance.
+        </p>
+      )}
       {themeForcesDark && (
         <p className="text-muted-foreground mt-2 text-xs">
           Sidebar appearance follows the dark theme.

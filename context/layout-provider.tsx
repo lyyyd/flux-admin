@@ -79,11 +79,21 @@ export function LayoutProvider({
 
   const setSidebarMode = React.useCallback(
     (mode: SidebarMode) => {
+      if (mode === "dark" && variant === "inset") {
+        setVariant("floating");
+      }
       setSidebarModePref(mode);
       persistPreference("sidebar-mode", mode);
     },
-    [persistPreference]
+    [persistPreference, setVariant, variant]
   );
+
+  React.useEffect(() => {
+    if (variant === "inset" && sidebarModePref !== "light") {
+      // Inset sidebars should remain light for contrast with the main surface.
+      setSidebarMode("light");
+    }
+  }, [variant, sidebarModePref, setSidebarMode]);
 
   const effectiveSidebarMode = forcedSidebarMode ?? sidebarModePref;
 
