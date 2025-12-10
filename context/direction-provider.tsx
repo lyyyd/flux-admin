@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-type Direction = "ltr" | "rtl";
+export type Direction = "ltr" | "rtl";
 
 interface DirectionProviderProps {
   children: React.ReactNode;
