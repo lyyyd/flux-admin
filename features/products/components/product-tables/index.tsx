@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { DataTable } from '@/components/ui/table/data-table';
-import { DataTableToolbar } from '@/components/ui/table/data-table-toolbar';
+import { DataTable } from "@/components/table/data-table";
+import { DataTableToolbar } from "@/components/table/data-table-toolbar";
 
-import { useDataTable } from '@/hooks/use-data-table';
+import { useDataTable } from "@/hooks/use-data-table";
 
-import { ColumnDef } from '@tanstack/react-table';
-import { parseAsInteger, useQueryState } from 'nuqs';
+import { ColumnDef } from "@tanstack/react-table";
+import { parseAsInteger, useQueryState } from "nuqs";
 interface ProductTableParams<TData, TValue> {
   data: TData[];
   totalItems: number;
@@ -17,7 +17,7 @@ export function ProductTable<TData, TValue>({
   totalItems,
   columns
 }: ProductTableParams<TData, TValue>) {
-  const [pageSize] = useQueryState('perPage', parseAsInteger.withDefault(10));
+  const [pageSize] = useQueryState("perPage", parseAsInteger.withDefault(10));
 
   const pageCount = Math.ceil(totalItems / pageSize);
 

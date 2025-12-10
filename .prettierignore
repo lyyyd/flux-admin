@@ -46,3 +46,6 @@ node_modules
 build
 dist
 ico
+
+# shadcn/ui components (don't format to keep original style)
+components/ui/**
