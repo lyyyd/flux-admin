@@ -82,11 +82,11 @@ Even if your app does not implement any React Server Function endpoints, it may 
 
 ### Current Versions
 
-| Package | Current Version | Security Status | Notes |
-|---------|----------------|-----------------|-------|
-| **react** | 19.2.1 | ✅ Secure | Official patched version |
-| **react-dom** | 19.2.1 | ✅ Secure | Official patched version |
-| **next** | 16.0.7 | ✅ Secure | Official patched version |
+| Package       | Current Version | Security Status | Notes                    |
+| ------------- | --------------- | --------------- | ------------------------ |
+| **react**     | 19.2.1          | ✅ Secure       | Official patched version |
+| **react-dom** | 19.2.1          | ✅ Secure       | Official patched version |
+| **next**      | 16.0.7          | ✅ Secure       | Official patched version |
 
 ### Audit Results
 
@@ -174,14 +174,14 @@ If the project were still using affected versions (e.g., React 19.2.0 or Next.js
 
 ## 📝 Audit Timeline
 
-| Date | Event |
-|------|-------|
-| 2025-11-29 | Vulnerability discovered and reported to Meta |
-| 2025-11-30 | Meta security researchers confirmed the vulnerability |
-| 2025-12-01 | Fix developed and collaboration with hosting providers |
+| Date       | Event                                                     |
+| ---------- | --------------------------------------------------------- |
+| 2025-11-29 | Vulnerability discovered and reported to Meta             |
+| 2025-11-30 | Meta security researchers confirmed the vulnerability     |
+| 2025-12-01 | Fix developed and collaboration with hosting providers    |
 | 2025-12-03 | Official patched versions released and publicly disclosed |
-| 2025-12-05 | CISA added vulnerability to KEV catalog |
-| 2025-12-10 | Project security audit completed |
+| 2025-12-05 | CISA added vulnerability to KEV catalog                   |
+| 2025-12-10 | Project security audit completed                          |
 
 ---
 
