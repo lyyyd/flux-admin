@@ -13,7 +13,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 
-const DEFAULT_THEMES = [
+export const DEFAULT_THEMES = [
   {
     name: "Default",
     value: "default"
@@ -27,12 +27,32 @@ const DEFAULT_THEMES = [
     value: "green"
   },
   {
+    name: "Orange",
+    value: "orange"
+  },
+  {
+    name: "Red",
+    value: "red"
+  },
+  {
+    name: "Rose",
+    value: "rose"
+  },
+  {
+    name: "Violet",
+    value: "violet"
+  },
+  {
+    name: "Yellow",
+    value: "yellow"
+  },
+  {
     name: "Amber",
     value: "amber"
   }
 ];
 
-const SCALED_THEMES = [
+export const SCALED_THEMES = [
   {
     name: "Default",
     value: "default-scaled"
@@ -43,12 +63,19 @@ const SCALED_THEMES = [
   }
 ];
 
-const MONO_THEMES = [
+export const MONO_THEMES = [
   {
     name: "Mono",
     value: "mono-scaled"
   }
 ];
+
+const ALL_THEMES = [...DEFAULT_THEMES, ...SCALED_THEMES, ...MONO_THEMES];
+
+export function getThemeDisplayName(value?: string) {
+  if (!value) return DEFAULT_THEMES[0]?.name ?? "Default";
+  return ALL_THEMES.find((theme) => theme.value === value)?.name ?? value;
+}
 
 export function ThemeSelector() {
   const { activeTheme, setActiveTheme } = useThemeConfig();

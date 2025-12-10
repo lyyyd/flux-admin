@@ -16,6 +16,10 @@ import { IconSidebarAppearanceLight } from "@/assets/custom/icon-sidebar-appeara
 import { IconThemeDark } from "@/assets/custom/icon-theme-dark";
 import { IconThemeLight } from "@/assets/custom/icon-theme-light";
 import { IconThemeSystem } from "@/assets/custom/icon-theme-system";
+import {
+  ThemeSelector,
+  getThemeDisplayName
+} from "@/components/theme-selector";
 import { cn } from "@/lib/utils";
 import { useDirection } from "@/context/direction-provider";
 import {
@@ -23,6 +27,7 @@ import {
   type SidebarMode,
   useLayout
 } from "@/context/layout-provider";
+import { useThemeConfig } from "@/components/active-theme";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -40,6 +45,7 @@ export function ConfigDrawer() {
   const { resetDir, dir } = useDirection();
   const { setTheme } = useTheme();
   const { resetLayout } = useLayout();
+  const scrollAreaClass = "config-drawer-scroll";
 
   const handleReset = () => {
     setOpen(true);
@@ -49,46 +55,69 @@ export function ConfigDrawer() {
   };
 
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button
-          size="icon"
-          variant="ghost"
-          aria-label="Open theme settings"
-          aria-describedby="config-drawer-description"
-          className="rounded-full"
-        >
-          <Settings aria-hidden="true" />
-        </Button>
-      </SheetTrigger>
-      <SheetContent
-        side={dir === "rtl" ? "left" : "right"}
-        className="flex flex-col gap-6"
-      >
-        <SheetHeader className="text-start">
-          <SheetTitle>Theme Settings</SheetTitle>
-          <SheetDescription id="config-drawer-description">
-            Adjust the appearance and layout to suit your preferences.
-          </SheetDescription>
-        </SheetHeader>
-        <div className="flex-1 space-y-6 overflow-y-auto px-4">
-          <ThemeConfig />
-          <SidebarConfig />
-          <SidebarAppearanceConfig />
-          <LayoutConfig />
-          <DirConfig />
-        </div>
-        <SheetFooter className="gap-2">
+    <>
+      <Sheet>
+        <SheetTrigger asChild>
           <Button
-            variant="destructive"
-            onClick={handleReset}
-            aria-label="Reset all settings to default values"
+            size="icon"
+            variant="ghost"
+            aria-label="Open theme settings"
+            aria-describedby="config-drawer-description"
+            className="rounded-full"
           >
-            Reset
+            <Settings aria-hidden="true" />
           </Button>
-        </SheetFooter>
-      </SheetContent>
-    </Sheet>
+        </SheetTrigger>
+        <SheetContent
+          side={dir === "rtl" ? "left" : "right"}
+          className="flex flex-col gap-6"
+        >
+          <SheetHeader className="text-start">
+            <SheetTitle>Appearance Settings</SheetTitle>
+            <SheetDescription id="config-drawer-description">
+              Adjust the appearance and layout to suit your preferences.
+            </SheetDescription>
+          </SheetHeader>
+          <div
+            className={cn(
+              scrollAreaClass,
+              "flex-1 space-y-6 overflow-y-auto px-4"
+            )}
+          >
+            <ColorPaletteConfig />
+            <ThemeConfig />
+            <SidebarConfig />
+            <SidebarAppearanceConfig />
+            <LayoutConfig />
+            <DirConfig />
+          </div>
+          <SheetFooter className="gap-2">
+            <Button
+              variant="destructive"
+              onClick={handleReset}
+              aria-label="Reset all settings to default values"
+            >
+              Reset
+            </Button>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
+      <style jsx>{`
+        .${scrollAreaClass} {
+          -ms-overflow-style: none;
+        }
+
+        @supports (scrollbar-width: none) {
+          .${scrollAreaClass} {
+            scrollbar-width: none;
+          }
+        }
+
+        .${scrollAreaClass}::-webkit-scrollbar {
+          display: none;
+        }
+      `}</style>
+    </>
   );
 }
 
@@ -121,6 +150,49 @@ function SectionTitle({
           <RotateCcw className="size-3" />
         </Button>
       )}
+    </div>
+  );
+}
+
+function ColorPaletteConfig() {
+  const { activeTheme } = useThemeConfig();
+  const label = getThemeDisplayName(activeTheme);
+
+  const swatches = [
+    { key: "primary", className: "bg-primary" },
+    { key: "accent", className: "bg-accent" },
+    { key: "foreground", className: "bg-primary-foreground" }
+  ];
+
+  return (
+    <div>
+      <SectionTitle title="Color Palette" />
+      <div className="border-border/60 bg-card/50 rounded-2xl border p-4 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <span className="border-border/60 bg-primary text-primary-foreground inline-flex size-12 items-center justify-center rounded-xl border text-sm font-semibold tracking-wide uppercase">
+              {label.slice(0, 1)}
+            </span>
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-semibold">{label}</p>
+            <p className="text-muted-foreground text-xs">
+              Active palette preview
+            </p>
+            <div className="mt-3 flex items-center gap-1.5">
+              {swatches.map((swatch) => (
+                <span
+                  key={swatch.key}
+                  className={cn("h-1.5 flex-1 rounded-full", swatch.className)}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="mt-4">
+          <ThemeSelector />
+        </div>
+      </div>
     </div>
   );
 }

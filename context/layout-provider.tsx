@@ -85,16 +85,7 @@ export function LayoutProvider({
     [persistPreference]
   );
 
-  React.useEffect(() => {
-    if (variant === "inset" && sidebarModePref === "dark") {
-      setSidebarMode("light");
-    }
-  }, [variant, sidebarModePref, setSidebarMode]);
-
-  const effectiveSidebarMode =
-    forcedSidebarMode && variant !== "inset"
-      ? forcedSidebarMode
-      : sidebarModePref;
+  const effectiveSidebarMode = forcedSidebarMode ?? sidebarModePref;
 
   const resetLayout = React.useCallback(() => {
     setVariant(defaultVariant);
