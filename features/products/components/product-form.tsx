@@ -78,83 +78,81 @@ export default function ProductForm({
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <Form
-          form={form}
-          onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8'
-        >
-          <FormFileUpload
-            control={form.control}
-            name='image'
-            label='Product Image'
-            description='Upload a product image'
-            config={{
-              maxSize: 5 * 1024 * 1024,
-              maxFiles: 4
-            }}
-          />
-
-          <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-            <FormInput
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+            <FormFileUpload
               control={form.control}
-              name='name'
-              label='Product Name'
-              placeholder='Enter product name'
-              required
+              name='image'
+              label='Product Image'
+              description='Upload a product image'
+              config={{
+                maxSize: 5 * 1024 * 1024,
+                maxFiles: 4
+              }}
             />
 
-            <FormSelect
+            <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+              <FormInput
+                control={form.control}
+                name='name'
+                label='Product Name'
+                placeholder='Enter product name'
+                required
+              />
+
+              <FormSelect
+                control={form.control}
+                name='category'
+                label='Category'
+                placeholder='Select category'
+                required
+                options={[
+                  {
+                    label: 'Beauty Products',
+                    value: 'beauty'
+                  },
+                  {
+                    label: 'Electronics',
+                    value: 'electronics'
+                  },
+                  {
+                    label: 'Home & Garden',
+                    value: 'home'
+                  },
+                  {
+                    label: 'Sports & Outdoors',
+                    value: 'sports'
+                  }
+                ]}
+              />
+
+              <FormInput
+                control={form.control}
+                name='price'
+                label='Price'
+                placeholder='Enter price'
+                required
+                type='number'
+                min={0}
+                step='0.01'
+              />
+            </div>
+
+            <FormTextarea
               control={form.control}
-              name='category'
-              label='Category'
-              placeholder='Select category'
+              name='description'
+              label='Description'
+              placeholder='Enter product description'
               required
-              options={[
-                {
-                  label: 'Beauty Products',
-                  value: 'beauty'
-                },
-                {
-                  label: 'Electronics',
-                  value: 'electronics'
-                },
-                {
-                  label: 'Home & Garden',
-                  value: 'home'
-                },
-                {
-                  label: 'Sports & Outdoors',
-                  value: 'sports'
-                }
-              ]}
+              config={{
+                maxLength: 500,
+                showCharCount: true,
+                rows: 4
+              }}
             />
 
-            <FormInput
-              control={form.control}
-              name='price'
-              label='Price'
-              placeholder='Enter price'
-              required
-              type='number'
-              min={0}
-              step='0.01'
-            />
-          </div>
-
-          <FormTextarea
-            control={form.control}
-            name='description'
-            label='Description'
-            placeholder='Enter product description'
-            required
-            config={{
-              maxLength: 500,
-              showCharCount: true,
-              rows: 4
-            }}
-          />
-
-          <Button type='submit'>Add Product</Button>
+            <Button type='submit'>Add Product</Button>
+          </form>
         </Form>
       </CardContent>
     </Card>
