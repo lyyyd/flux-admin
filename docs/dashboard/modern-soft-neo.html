@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modern Soft-Neo UI Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --lavender-100: #f7f5ff;
+        --lavender-200: #ebe7ff;
+        --lavender-600: #8c7cf0;
+        --lavender-700: #7665d9;
+        --rose-200: #fbe7ff;
+        --soft-pink: #c6b9ff;
+        --soft-green: #b0f0d2;
+        --soft-yellow: #ffeeb8;
+        --soft-orange: #ffd2b5;
+        --ink: #2f2a3f;
+        --subdued: #6c6484;
+        --cloud: #fcfcfe;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Plus Jakarta Sans', 'Space Grotesk', sans-serif;
+        background: var(--cloud);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background-image: radial-gradient(circle at 20% 20%, #ffffff 0%, transparent 45%),
+          radial-gradient(circle at 80% 0%, #f2ecff 0%, transparent 40%),
+          linear-gradient(180deg, #ffffff 0%, #f8f9ff 100%);
+      }
+
+      .app-shell {
+        width: min(1200px, 100%);
+        display: grid;
+        grid-template-columns: 92px 1.2fr 0.9fr;
+        gap: 2rem;
+      }
+
+      .floating-card {
+        background: #fff;
+        border-radius: 1.75rem;
+        box-shadow: 0 30px 80px rgba(140, 124, 240, 0.15);
+        padding: 1.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-panel {
+        background: linear-gradient(180deg, #f3f0ff, #faf7ff);
+        border-radius: 1.75rem;
+        padding: 1.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        box-shadow: 0 25px 60px rgba(118, 101, 217, 0.18);
+      }
+
+      .nav-avatar {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--lavender-600), var(--soft-pink));
+        display: grid;
+        place-items: center;
+        font-family: 'Space Grotesk', sans-serif;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .nav-item {
+        width: 100%;
+        aspect-ratio: 1;
+        border-radius: 1.2rem;
+        display: grid;
+        place-items: center;
+        color: var(--lavender-700);
+        background: rgba(140, 124, 240, 0.05);
+        box-shadow: inset 0 0 0 1px rgba(140, 124, 240, 0.12);
+        font-size: 1.2rem;
+        transition: transform 0.35s ease, background 0.35s ease;
+      }
+
+      .nav-item.active {
+        background: linear-gradient(160deg, #8c7cf0, #c6b9ff);
+        color: #fff;
+        box-shadow: 0 15px 30px rgba(140, 124, 240, 0.35);
+      }
+
+      .nav-item:hover {
+        transform: translateY(-4px);
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+
+      .hero-card {
+        border-radius: 2rem;
+        padding: 2.5rem;
+        background: linear-gradient(135deg, rgba(140, 124, 240, 0.93), rgba(198, 185, 255, 0.9));
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2rem;
+        box-shadow: 0 35px 90px rgba(118, 101, 217, 0.45);
+      }
+
+      .hero-card h1 {
+        font-size: clamp(2rem, 3vw, 2.8rem);
+        margin: 0 0 1rem;
+      }
+
+      .hero-card p {
+        margin: 0;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+      }
+
+      .hero-pill {
+        padding: 0.75rem 1.25rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.18);
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+
+      .hero-illustration {
+        position: relative;
+        border-radius: 1.5rem;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.55), transparent 65%),
+          linear-gradient(160deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+        overflow: hidden;
+      }
+
+      .hero-illustration::after {
+        content: '';
+        position: absolute;
+        inset: 1rem;
+        border-radius: 1.2rem;
+        border: 1px dashed rgba(255, 255, 255, 0.35);
+      }
+
+      .hero-illustration svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+        animation: floaty 6s ease-in-out infinite;
+      }
+
+      @keyframes floaty {
+        0% {
+          transform: translateY(6px);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+        100% {
+          transform: translateY(6px);
+        }
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .soft-card {
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(247, 245, 255, 0.95));
+        box-shadow: 0 25px 60px rgba(47, 42, 63, 0.08);
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .soft-card h3 {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+
+      .soft-card p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--subdued);
+      }
+
+      .soft-progress {
+        height: 6px;
+        background: rgba(140, 124, 240, 0.15);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .soft-progress span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--lavender-600), var(--soft-pink));
+      }
+
+      .soft-progress[data-progress='72'] span {
+        width: 72%;
+      }
+
+      .soft-progress[data-progress='54'] {
+        background: rgba(255, 206, 209, 0.35);
+      }
+
+      .soft-progress[data-progress='54'] span {
+        width: 54%;
+        background: linear-gradient(90deg, #ffb5d2, #ffd2b5);
+      }
+
+      .soft-progress[data-progress='88'] {
+        background: rgba(176, 240, 210, 0.4);
+      }
+
+      .soft-progress[data-progress='88'] span {
+        width: 88%;
+        background: linear-gradient(90deg, #5cd2a4, #b0f0d2);
+      }
+
+      .info-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .muted-label {
+        margin: 0;
+        color: var(--subdued);
+      }
+
+      .title-compact {
+        margin: 0.25rem 0 0;
+      }
+
+      .hero-pill.subtle {
+        color: var(--lavender-700);
+        background: rgba(198, 185, 255, 0.35);
+      }
+
+      .agenda-title {
+        margin: 0 0 0.5rem;
+      }
+
+      .note-muted {
+        margin: 0;
+        color: var(--subdued);
+      }
+
+      .info-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .gradient-card {
+        border-radius: 1.5rem;
+        padding: 1.75rem;
+        background: linear-gradient(140deg, #fff6ff, #f6f8ff 55%, #fefefe);
+        box-shadow: 0 20px 55px rgba(118, 101, 217, 0.22);
+      }
+
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .calendar span {
+        aspect-ratio: 1;
+        border-radius: 1rem;
+        display: grid;
+        place-items: center;
+        font-size: 0.85rem;
+        color: var(--subdued);
+        background: rgba(140, 124, 240, 0.05);
+      }
+
+      .calendar span.highlight {
+        background: linear-gradient(150deg, var(--lavender-600), var(--soft-pink));
+        color: #fff;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(140, 124, 240, 0.35);
+      }
+
+      .schedule-card {
+        border-radius: 1.5rem;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 240, 0.9));
+        box-shadow: 0 25px 60px rgba(255, 173, 191, 0.18);
+      }
+
+      .schedule-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.85rem 0;
+        border-bottom: 1px solid rgba(140, 124, 240, 0.08);
+      }
+
+      .schedule-item:last-child {
+        border-bottom: none;
+      }
+
+      .schedule-item strong {
+        font-size: 1rem;
+      }
+
+      .schedule-pill {
+        padding: 0.35rem 0.85rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .pill-green {
+        background: rgba(176, 240, 210, 0.35);
+        color: #2f7b59;
+      }
+
+      .pill-yellow {
+        background: rgba(255, 238, 184, 0.55);
+        color: #7a6615;
+      }
+
+      .pill-orange {
+        background: rgba(255, 210, 181, 0.65);
+        color: #a35a18;
+      }
+
+      @media (max-width: 1080px) {
+        body {
+          padding: 1.5rem;
+        }
+        .app-shell {
+          grid-template-columns: 80px 1fr;
+        }
+        .info-panel {
+          grid-column: span 2;
+          flex-direction: row;
+          flex-wrap: wrap;
+        }
+        .hero-card {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 720px) {
+        body {
+          padding: 1rem;
+        }
+        .app-shell {
+          grid-template-columns: 1fr;
+        }
+        .nav-panel {
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 1rem;
+        }
+        .nav-item {
+          width: 48px;
+        }
+        .info-panel {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="nav-panel">
+        <div class="nav-avatar">LA</div>
+        <div class="nav-item active">⌂</div>
+        <div class="nav-item">☰</div>
+        <div class="nav-item">✿</div>
+        <div class="nav-item">⚙</div>
+      </aside>
+
+      <main>
+        <section class="hero-card">
+          <div>
+            <h1>Soft-Neo Mission Control</h1>
+            <p>
+              Gentle gradients meet clear structure. Track launches, creative sprints, and product rituals in a mellow, cloud-soft
+              workspace.
+            </p>
+            <div class="hero-stats">
+              <div class="hero-pill">
+                <small>Mission Ready</small>
+                <span>08:30</span>
+              </div>
+              <div class="hero-pill">
+                <small>Crew</small>
+                <span>12 designers</span>
+              </div>
+              <div class="hero-pill">
+                <small>Orbit</small>
+                <span>Lavender Ridge</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-illustration">
+            <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="sunrise" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffebb8" />
+                  <stop offset="100%" stop-color="#ffd2b5" />
+                </linearGradient>
+                <linearGradient id="suit" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#c6b9ff" />
+                  <stop offset="100%" stop-color="#8c7cf0" />
+                </linearGradient>
+              </defs>
+              <rect width="320" height="240" fill="none" />
+              <circle cx="240" cy="70" r="40" fill="url(#sunrise)" opacity="0.7" />
+              <ellipse cx="230" cy="200" rx="120" ry="25" fill="rgba(255,255,255,0.2)" />
+              <path d="M30 190 Q120 90 220 180" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="4" stroke-linecap="round" />
+              <circle cx="120" cy="110" r="38" fill="#ffeef6" stroke="#ffffff" stroke-width="4" />
+              <circle cx="120" cy="105" r="24" fill="#ffd1de" />
+              <path d="M90 190 Q120 140 150 190" fill="url(#suit)" stroke="#ffffff" stroke-width="6" stroke-linejoin="round" />
+              <circle cx="120" cy="80" r="8" fill="#fff" />
+              <rect x="60" y="150" width="40" height="60" rx="20" fill="#b0f0d2" opacity="0.7" />
+              <rect x="150" y="150" width="45" height="60" rx="22" fill="#ffeeb8" opacity="0.65" />
+              <path d="M240 130 Q260 110 280 130" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" />
+            </svg>
+          </div>
+        </section>
+
+        <section class="cards-grid">
+          <article class="soft-card">
+            <h3>Product Pulse</h3>
+            <p>Lavender Ridge roadmap synced with warm sunrise rituals.</p>
+            <div class="soft-progress" data-progress="72"><span></span></div>
+          </article>
+          <article class="soft-card">
+            <h3>Launch Prep</h3>
+            <p>Illustration drop, navigation polish, calendar glow.</p>
+            <div class="soft-progress" data-progress="54"><span></span></div>
+          </article>
+          <article class="soft-card">
+            <h3>Wellness Orbit</h3>
+            <p>Breathing space tracks anchored to soft neon lull.</p>
+            <div class="soft-progress" data-progress="88"><span></span></div>
+          </article>
+        </section>
+      </main>
+
+      <aside class="info-panel">
+        <div class="gradient-card">
+          <div class="info-head">
+            <div>
+              <p class="muted-label">Sunrise Calendar</p>
+              <h2 class="title-compact">April 2025</h2>
+            </div>
+            <div class="hero-pill subtle">
+              <small>Next Focus</small>
+              <span>Soft Orbit</span>
+            </div>
+          </div>
+          <div class="calendar">
+            <span>8</span>
+            <span>9</span>
+            <span>10</span>
+            <span>11</span>
+            <span class="highlight">12</span>
+            <span>13</span>
+            <span>14</span>
+            <span>15</span>
+            <span>16</span>
+            <span>17</span>
+            <span>18</span>
+            <span>19</span>
+            <span>20</span>
+            <span>21</span>
+          </div>
+        </div>
+
+        <div class="schedule-card">
+          <h3 class="agenda-title">Lavender Agenda</h3>
+          <div class="schedule-item">
+            <div>
+              <strong>Illustration Sync</strong>
+              <p class="note-muted">Floating crew pose study</p>
+            </div>
+            <span class="schedule-pill pill-green">09:30</span>
+          </div>
+          <div class="schedule-item">
+            <div>
+              <strong>Soft-Neo Ritual</strong>
+              <p class="note-muted">Gradient audit + motion</p>
+            </div>
+            <span class="schedule-pill pill-yellow">11:00</span>
+          </div>
+          <div class="schedule-item">
+            <div>
+              <strong>Orbit Handoff</strong>
+              <p class="note-muted">Calendar + nav polish</p>
+            </div>
+            <span class="schedule-pill pill-orange">14:15</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>

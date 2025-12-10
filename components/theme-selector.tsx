@@ -43,6 +43,10 @@ export const DEFAULT_THEMES = [
     value: "violet"
   },
   {
+    name: "Lavender",
+    value: "lavender"
+  },
+  {
     name: "Yellow",
     value: "yellow"
   },
