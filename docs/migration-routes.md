@@ -10,12 +10,12 @@
 - [x] `/forgot-password` - 忘记密码页 → `/login/forgot-password`
 
 ### 错误页面 (Error Pages)
-- [ ] `/401` - 未授权
-- [ ] `/403` - 禁止访问
-- [ ] `/404` - 页面未找到
-- [ ] `/500` - 服务器错误
-- [ ] `/503` - 服务不可用
-- [ ] `/errors/$error` - 动态错误页
+- [x] `/401` - 未授权 → `/dashboard/errors/401`
+- [x] `/403` - 禁止访问 → `/dashboard/errors/403`
+- [x] `/404` - 页面未找到 → `/dashboard/errors/404`
+- [x] `/500` - 服务器错误 → `/dashboard/errors/500`
+- [x] `/503` - 服务不可用 → `/dashboard/errors/503`
+- [x] `/errors/$error` - 动态错误页 → `/dashboard/errors/[error]`
 
 ### 主要功能页面 (Main Pages)
 - [ ] `/` - 首页/Dashboard
@@ -73,6 +73,21 @@
 - ✅ `features/auth/sign-up/sign-up-form.tsx` - 注册表单
 - ✅ `features/auth/otp/otp-form.tsx` - OTP表单
 - ✅ `features/auth/forgot-password/forgot-password-form.tsx` - 忘记密码表单
+
+**2025-12-11 错误页面迁移**
+- ✅ `/dashboard/errors/401` - 未授权访问错误页（dashboard布局内）
+- ✅ `/dashboard/errors/403` - 禁止访问错误页（dashboard布局内）
+- ✅ `/dashboard/errors/404` - 页面未找到错误页（dashboard布局内）
+- ✅ `/dashboard/errors/500` - 服务器内部错误页（dashboard布局内）
+- ✅ `/dashboard/errors/503` - 网站维护错误页（dashboard布局内）
+- ✅ `/dashboard/errors/[error]` - 动态错误页（支持多种错误类型）
+
+**迁移组件**
+- ✅ `features/errors/unauthorized-error.tsx` - 401错误组件
+- ✅ `features/errors/forbidden-error.tsx` - 403错误组件
+- ✅ `features/errors/not-found-error.tsx` - 404错误组件
+- ✅ `features/errors/general-error.tsx` - 500错误组件
+- ✅ `features/errors/maintenance-error.tsx` - 503错误组件
 
 ### 进行中
 <!-- 这里记录正在进行的迁移 -->

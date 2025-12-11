@@ -75,6 +75,39 @@ export const navItems: NavItem[] = [
     ]
   },
   {
+    title: "Errors",
+    url: "#",
+    icon: "error",
+    isActive: true,
+    items: [
+      {
+        title: "401 - Unauthorized",
+        url: "/dashboard/errors/401",
+        icon: "error401"
+      },
+      {
+        title: "403 - Forbidden",
+        url: "/dashboard/errors/403",
+        icon: "error403"
+      },
+      {
+        title: "404 - Not Found",
+        url: "/dashboard/errors/404",
+        icon: "error404"
+      },
+      {
+        title: "500 - Server Error",
+        url: "/dashboard/errors/500",
+        icon: "error500"
+      },
+      {
+        title: "503 - Maintenance",
+        url: "/dashboard/errors/503",
+        icon: "error503"
+      }
+    ]
+  },
+  {
     title: "Workspaces",
     url: "/dashboard/workspaces",
     icon: "workspace",

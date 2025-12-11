@@ -39,7 +39,13 @@ import {
   IconUserPlus,
   IconKey,
   IconShieldLock,
-  IconMail
+  IconMail,
+  IconAlertCircle,
+  IconLock,
+  IconBan,
+  IconFileOff,
+  IconAlertOctagon,
+  IconToolsOff
 } from "@tabler/icons-react";
 
 export type Icon = React.ComponentType<IconProps>;
@@ -85,5 +91,11 @@ export const Icons = {
   signUp: IconUserPlus,
   otp: IconShieldLock,
   forgotPassword: IconKey,
-  resetPassword: IconMail
+  resetPassword: IconMail,
+  error: IconAlertCircle,
+  error401: IconLock,
+  error403: IconBan,
+  error404: IconFileOff,
+  error500: IconAlertOctagon,
+  error503: IconToolsOff
 };
