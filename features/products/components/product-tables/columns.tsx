@@ -14,7 +14,7 @@ export const columns: ColumnDef<Product>[] = [
     header: "IMAGE",
     cell: ({ row }) => {
       return (
-        <div className="relative aspect-square">
+        <div className="relative aspect-square h-20 w-20">
           <Image
             src={row.getValue("photo_url")}
             alt={row.getValue("name")}
@@ -75,6 +75,10 @@ export const columns: ColumnDef<Product>[] = [
 
   {
     id: "actions",
-    cell: ({ row }) => <CellAction data={row.original} />
+    cell: ({ row }) => (
+      <div className="@container">
+        <CellAction data={row.original} />
+      </div>
+    )
   }
 ];
