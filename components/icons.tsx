@@ -15,7 +15,6 @@ import {
   IconLoader2,
   IconLogin,
   IconProps,
-  IconShoppingBag,
   IconMoon,
   IconDotsVertical,
   IconPizza,

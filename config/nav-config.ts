@@ -37,7 +37,7 @@ export const navItems: NavItem[] = [
     title: "Dashboard",
     url: "/dashboard/overview",
     icon: "dashboard",
-    isActive: false,
+    isActive: true,
     shortcut: ["d", "d"],
     items: []
   },
@@ -45,7 +45,7 @@ export const navItems: NavItem[] = [
     title: "Auth",
     url: "#",
     icon: "login",
-    isActive: true,
+    isActive: false,
     items: [
       {
         title: "Sign In",
@@ -78,7 +78,7 @@ export const navItems: NavItem[] = [
     title: "Errors",
     url: "#",
     icon: "error",
-    isActive: true,
+    isActive: false,
     items: [
       {
         title: "401 - Unauthorized",
@@ -111,7 +111,7 @@ export const navItems: NavItem[] = [
     title: "Examples",
     url: "#",
     icon: "dashboard",
-    isActive: true,
+    isActive: false,
     items: [
       {
         title: "Dashboard",
@@ -142,6 +142,39 @@ export const navItems: NavItem[] = [
         title: "Users",
         url: "/dashboard/examples/users",
         icon: "users"
+      }
+    ]
+  },
+  {
+    title: "Settings",
+    url: "/dashboard/examples/settings",
+    icon: "settings",
+    isActive: false,
+    items: [
+      {
+        title: "Profile",
+        url: "/dashboard/examples/settings",
+        icon: "profile"
+      },
+      {
+        title: "Account",
+        url: "/dashboard/examples/settings/account",
+        icon: "account"
+      },
+      {
+        title: "Appearance",
+        url: "/dashboard/examples/settings/appearance",
+        icon: "settings"
+      },
+      {
+        title: "Notifications",
+        url: "/dashboard/examples/settings/notifications",
+        icon: "settings"
+      },
+      {
+        title: "Display",
+        url: "/dashboard/examples/settings/display",
+        icon: "settings"
       }
     ]
   },
@@ -183,7 +216,7 @@ export const navItems: NavItem[] = [
     title: "Pro",
     url: "#", // Placeholder as there is no direct link for the parent
     icon: "pro",
-    isActive: true,
+    isActive: false,
     items: [
       {
         title: "Exclusive",
@@ -197,7 +230,7 @@ export const navItems: NavItem[] = [
     title: "Account",
     url: "#", // Placeholder as there is no direct link for the parent
     icon: "account",
-    isActive: true,
+    isActive: false,
     items: [
       {
         title: "Profile",

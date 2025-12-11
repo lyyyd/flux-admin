@@ -24,7 +24,7 @@
 - [x] `/` - 首页/Dashboard → `/dashboard/examples`
 - [x] `/apps` - 应用列表页 → `/dashboard/examples/apps`
 - [x] `/chats` - 聊天页 → `/dashboard/examples/chats`
-- [x] `/help-center` - 帮助中心 → `/dashboard/examples/help-center`
+- [] `/help-center` - 帮助中心 → `/dashboard/examples/help-center`
 - [x] `/tasks` - 任务管理页 → `/dashboard/examples/tasks`
 - [x] `/users` - 用户管理页 → `/dashboard/examples/users`
 

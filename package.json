@@ -11,6 +11,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
+    "typecheck": "tsc -b --pretty false",
+    "verify": "pnpm lint && pnpm typecheck",
     "lint:fix": "eslint . --fix && pnpm format",
     "lint:strict": "eslint --max-warnings=0 .",
     "format": "prettier --write .",

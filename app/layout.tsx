@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { fontVariables } from "@/lib/font";
 import ThemeProvider from "@/components/layout/ThemeToggle/theme-provider";
 import { cn } from "@/lib/utils";
+import { FontProvider } from "@/context/font-provider";
 import type { Metadata, Viewport } from "next";
 import { cookies } from "next/headers";
 import NextTopLoader from "nextjs-toploader";
@@ -85,14 +86,16 @@ export default async function RootLayout({
             disableTransitionOnChange
             enableColorScheme
           >
-            <Providers
-              activeThemeValue={activeThemeValue}
-              initialLayout={initialLayout}
-              initialDir={initialDir}
-            >
-              <Toaster />
-              {children}
-            </Providers>
+            <FontProvider>
+              <Providers
+                activeThemeValue={activeThemeValue}
+                initialLayout={initialLayout}
+                initialDir={initialDir}
+              >
+                <Toaster />
+                {children}
+              </Providers>
+            </FontProvider>
           </ThemeProvider>
         </NuqsAdapter>
       </body>

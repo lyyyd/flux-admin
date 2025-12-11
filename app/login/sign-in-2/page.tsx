@@ -55,14 +55,14 @@ export default function SignIn2Page() {
           className="dark:hidden"
           width={1024}
           height={1151}
-          alt="Shadcn-Admin"
+          alt="Flux-Admin"
         />
         <Image
           src="/assets/dashboard-dark.png"
           className="hidden dark:block"
           width={1024}
           height={1138}
-          alt="Shadcn-Admin"
+          alt="Flux-Admin"
         />
       </div>
     </div>

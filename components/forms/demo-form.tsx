@@ -294,6 +294,7 @@ export default function DemoForm() {
         </CardHeader>
         <CardContent>
           <pre className="bg-muted overflow-auto rounded-lg p-4 text-sm">
+            {/* eslint-disable-next-line react-hooks/incompatible-library */}
             {JSON.stringify(form.watch(), null, 2)}
           </pre>
         </CardContent>

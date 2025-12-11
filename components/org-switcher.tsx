@@ -39,7 +39,7 @@ export function OrgSwitcher() {
     if (userMemberships?.revalidate) {
       void userMemberships.revalidate();
     }
-  }, [orgId]);
+  }, [orgId, userMemberships]);
 
   // Get the currently active organization
   const activeOrganization = userMemberships?.data?.find(

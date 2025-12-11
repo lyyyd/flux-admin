@@ -23,6 +23,7 @@ import NewSectionDialog from "./new-section-dialog";
 import { TaskCard } from "./task-card";
 // import { coordinateGetter } from "./multipleContainersKeyboardPreset";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const defaultCols = [
   {
     id: "TODO" as const,
@@ -53,7 +54,7 @@ export function KanbanBoard() {
   const tasks = useTaskStore((state) => state.tasks);
   const setTasks = useTaskStore((state) => state.setTasks);
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
-  const [isMounted, setIsMounted] = useState<Boolean>(false);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
@@ -67,12 +68,12 @@ export function KanbanBoard() {
 
   useEffect(() => {
     setIsMounted(true);
-  }, [isMounted]);
+  }, []);
 
   useEffect(() => {
     useTaskStore.persist.rehydrate();
   }, []);
-  if (!isMounted) return;
+  if (!isMounted) return null;
 
   function getDraggingTaskData(taskId: UniqueIdentifier, columnId: ColumnId) {
     const tasksInColumn = tasks.filter((task) => task.status === columnId);

@@ -42,7 +42,7 @@ export function useFilteredNavItems(items: NavItem[]) {
       role: role ?? undefined,
       hasOrg: !!organization
     };
-  }, [organization?.id, user?.id, membership?.permissions, membership?.role]);
+  }, [organization, user, membership?.permissions, membership?.role]);
 
   // Filter items synchronously (all client-side)
   const filteredItems = useMemo(() => {

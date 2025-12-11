@@ -13,7 +13,12 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
     "components/ui/**"
-  ])
+  ]),
+  {
+    rules: {
+      "react-refresh/only-export-components": "off"
+    }
+  }
 ]);
 
 export default eslintConfig;

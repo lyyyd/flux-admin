@@ -25,7 +25,8 @@ export default function PageContainer({
   accessFallback,
   pageTitle,
   pageDescription,
-  pageHeaderAction
+  pageHeaderAction,
+  hideHeader = false
 }: {
   children: React.ReactNode;
   scrollable?: boolean;
@@ -35,6 +36,7 @@ export default function PageContainer({
   pageTitle?: string;
   pageDescription?: string;
   pageHeaderAction?: React.ReactNode;
+  hideHeader?: boolean;
 }) {
   if (!access) {
     return (
@@ -53,6 +55,23 @@ export default function PageContainer({
   return scrollable ? (
     <ScrollArea className="h-[calc(100dvh-52px)]">
       <div className="flex flex-1 flex-col p-4 md:px-6">
+        {hideHeader ? null : (
+          <div className="mb-4 flex items-start justify-between">
+            <div>
+              <Heading
+                title={pageTitle ?? ""}
+                description={pageDescription ?? ""}
+              />
+            </div>
+            {pageHeaderAction ? <div>{pageHeaderAction}</div> : null}
+          </div>
+        )}
+        {content}
+      </div>
+    </ScrollArea>
+  ) : (
+    <div className="flex flex-1 flex-col p-4 md:px-6">
+      {hideHeader ? null : (
         <div className="mb-4 flex items-start justify-between">
           <div>
             <Heading
@@ -62,20 +81,7 @@ export default function PageContainer({
           </div>
           {pageHeaderAction ? <div>{pageHeaderAction}</div> : null}
         </div>
-        {content}
-      </div>
-    </ScrollArea>
-  ) : (
-    <div className="flex flex-1 flex-col p-4 md:px-6">
-      <div className="mb-4 flex items-start justify-between">
-        <div>
-          <Heading
-            title={pageTitle ?? ""}
-            description={pageDescription ?? ""}
-          />
-        </div>
-        {pageHeaderAction ? <div>{pageHeaderAction}</div> : null}
-      </div>
+      )}
       {content}
     </div>
   );

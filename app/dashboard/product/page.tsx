@@ -1,10 +1,8 @@
 import PageContainer from "@/components/layout/page-container";
 import { buttonVariants } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
 import { DataTableSkeleton } from "@/components/table/data-table-skeleton";
 import ProductListingPage from "@/features/products/components/product-listing";
-import { searchParamsCache, serialize } from "@/lib/searchparams";
+import { searchParamsCache } from "@/lib/searchparams";
 import { cn } from "@/lib/utils";
 import { IconPlus } from "@tabler/icons-react";
 import Link from "next/link";
@@ -15,11 +13,11 @@ export const metadata = {
   title: "Dashboard: Products"
 };
 
-type pageProps = {
+type PageProps = {
   searchParams: Promise<SearchParams>;
 };
 
-export default async function Page(props: pageProps) {
+export default async function Page(props: PageProps) {
   const searchParams = await props.searchParams;
   // Allow nested RSCs to access the search params (in a type-safe way)
   searchParamsCache.parse(searchParams);
