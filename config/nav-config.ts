@@ -42,6 +42,39 @@ export const navItems: NavItem[] = [
     items: []
   },
   {
+    title: "Auth",
+    url: "#",
+    icon: "login",
+    isActive: true,
+    items: [
+      {
+        title: "Sign In",
+        url: "/login/sign-in",
+        icon: "login"
+      },
+      {
+        title: "Sign In 2",
+        url: "/login/sign-in-2",
+        icon: "login"
+      },
+      {
+        title: "Sign Up",
+        url: "/login/sign-up",
+        icon: "signUp"
+      },
+      {
+        title: "OTP",
+        url: "/login/otp",
+        icon: "otp"
+      },
+      {
+        title: "Forgot Password",
+        url: "/login/forgot-password",
+        icon: "forgotPassword"
+      }
+    ]
+  },
+  {
     title: "Workspaces",
     url: "/dashboard/workspaces",
     icon: "workspace",

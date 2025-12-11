@@ -35,7 +35,11 @@ import {
   IconUsers,
   IconCrown,
   IconStar,
-  IconBox
+  IconBox,
+  IconUserPlus,
+  IconKey,
+  IconShieldLock,
+  IconMail
 } from "@tabler/icons-react";
 
 export type Icon = React.ComponentType<IconProps>;
@@ -77,5 +81,9 @@ export const Icons = {
   pro: IconCrown,
   exclusive: IconStar,
   account: IconUserCircle,
-  profile: IconUser
+  profile: IconUser,
+  signUp: IconUserPlus,
+  otp: IconShieldLock,
+  forgotPassword: IconKey,
+  resetPassword: IconMail
 };
