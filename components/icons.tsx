@@ -45,7 +45,12 @@ import {
   IconBan,
   IconFileOff,
   IconAlertOctagon,
-  IconToolsOff
+  IconToolsOff,
+  IconApps,
+  IconMessage,
+  IconHelp,
+  IconChecklist,
+  IconUsersGroup
 } from "@tabler/icons-react";
 
 export type Icon = React.ComponentType<IconProps>;
@@ -97,5 +102,10 @@ export const Icons = {
   error403: IconBan,
   error404: IconFileOff,
   error500: IconAlertOctagon,
-  error503: IconToolsOff
+  error503: IconToolsOff,
+  apps: IconApps,
+  chats: IconMessage,
+  helpCenter: IconHelp,
+  tasks: IconChecklist,
+  users: IconUsersGroup
 };

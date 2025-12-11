@@ -108,6 +108,44 @@ export const navItems: NavItem[] = [
     ]
   },
   {
+    title: "Examples",
+    url: "#",
+    icon: "dashboard",
+    isActive: true,
+    items: [
+      {
+        title: "Dashboard",
+        url: "/dashboard/examples",
+        icon: "dashboard"
+      },
+      {
+        title: "Apps",
+        url: "/dashboard/examples/apps",
+        icon: "apps"
+      },
+      {
+        title: "Chats",
+        url: "/dashboard/examples/chats",
+        icon: "chats"
+      },
+      {
+        title: "Help Center",
+        url: "/dashboard/examples/help-center",
+        icon: "helpCenter"
+      },
+      {
+        title: "Tasks",
+        url: "/dashboard/examples/tasks",
+        icon: "tasks"
+      },
+      {
+        title: "Users",
+        url: "/dashboard/examples/users",
+        icon: "users"
+      }
+    ]
+  },
+  {
     title: "Workspaces",
     url: "/dashboard/workspaces",
     icon: "workspace",

@@ -21,12 +21,12 @@
 
 ### 主要功能页面 (Main Pages)
 
-- [ ] `/` - 首页/Dashboard
-- [ ] `/apps` - 应用列表页
-- [ ] `/chats` - 聊天页
-- [ ] `/help-center` - 帮助中心
-- [ ] `/tasks` - 任务管理页
-- [ ] `/users` - 用户管理页
+- [x] `/` - 首页/Dashboard → `/dashboard/examples`
+- [x] `/apps` - 应用列表页 → `/dashboard/examples/apps`
+- [x] `/chats` - 聊天页 → `/dashboard/examples/chats`
+- [x] `/help-center` - 帮助中心 → `/dashboard/examples/help-center`
+- [x] `/tasks` - 任务管理页 → `/dashboard/examples/tasks`
+- [x] `/users` - 用户管理页 → `/dashboard/examples/users`
 
 ### 设置页面 (Settings Pages)
 
@@ -100,6 +100,26 @@
 - ✅ `features/errors/not-found-error.tsx` - 404错误组件
 - ✅ `features/errors/general-error.tsx` - 500错误组件
 - ✅ `features/errors/maintenance-error.tsx` - 503错误组件
+
+**2025-12-11 示例页面迁移（占位阶段）**
+
+- ✅ `/dashboard/examples` - 示例首页（占位）
+- ✅ `/dashboard/examples/apps` - 应用集成列表页（占位）
+- ✅ `/dashboard/examples/chats` - 聊天消息页（占位）
+- ✅ `/dashboard/examples/help-center` - 帮助中心页（占位）
+- ✅ `/dashboard/examples/tasks` - 任务管理页（占位）
+- ✅ `/dashboard/examples/users` - 用户管理页（占位）
+
+**迁移组件**
+
+- ✅ `components/coming-soon.tsx` - 占位页面组件
+
+**注意**: 这些页面当前使用 ComingSoon 占位组件，后续需要迁移完整功能，包括：
+- Apps: 应用卡片、过滤器、数据文件
+- Chats: 对话列表、消息面板、Provider
+- Tasks: 任务表格、Kanban视图、表单
+- Users: 用户表格、编辑对话框、批量操作
+- Help Center: 帮助文章、分类、搜索
 
 ### 进行中
 
