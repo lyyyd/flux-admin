@@ -115,6 +115,7 @@
 - ✅ `components/coming-soon.tsx` - 占位页面组件
 
 **注意**: 这些页面当前使用 ComingSoon 占位组件，后续需要迁移完整功能，包括：
+
 - Apps: 应用卡片、过滤器、数据文件
 - Chats: 对话列表、消息面板、Provider
 - Tasks: 任务表格、Kanban视图、表单
