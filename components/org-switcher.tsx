@@ -28,18 +28,11 @@ export function OrgSwitcher() {
   const { isLoaded, setActive, userMemberships } = useOrganizationList({
     userMemberships: {
       infinite: true,
-      keepPreviousData: false
+      keepPreviousData: true
     }
   });
 
   const { orgId } = useAuth();
-
-  useEffect(() => {
-    console.log("revalidating memberships");
-    if (userMemberships?.revalidate) {
-      void userMemberships.revalidate();
-    }
-  }, [orgId, userMemberships]);
 
   // Get the currently active organization
   const activeOrganization = userMemberships?.data?.find(

@@ -16,6 +16,7 @@
     "baseUrl": "./",
     "ignoreDeprecations": "5.0",
     "forceConsistentCasingInFileNames": true,
+    "types": [],
     "plugins": [
       {
         "name": "next"

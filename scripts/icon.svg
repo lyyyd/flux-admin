@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background with gradient -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Rounded rectangle background -->
+  <rect width="512" height="512" rx="96" fill="url(#grad)"/>
+  
+  <!-- Workflow/Todo icon design -->
+  <g transform="translate(256, 256)">
+    <!-- Check circle 1 (completed) -->
+    <circle cx="-80" cy="-80" r="40" fill="none" stroke="#ffffff" stroke-width="8"/>
+    <path d="M -95 -80 L -85 -70 L -65 -90" stroke="#ffffff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Check circle 2 (completed) -->
+    <circle cx="80" cy="-80" r="40" fill="none" stroke="#ffffff" stroke-width="8"/>
+    <path d="M 65 -80 L 75 -70 L 95 -90" stroke="#ffffff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Circle 3 (in progress) -->
+    <circle cx="-80" cy="80" r="40" fill="none" stroke="#ffffff" stroke-width="8"/>
+    <circle cx="-80" cy="80" r="15" fill="#ffffff"/>
+    
+    <!-- Circle 4 (pending) -->
+    <circle cx="80" cy="80" r="40" fill="none" stroke="#ffffff" stroke-width="8" opacity="0.5"/>
+    
+    <!-- Connection lines -->
+    <line x1="-40" y1="-80" x2="40" y2="-80" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <line x1="-80" y1="-40" x2="-80" y2="40" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+    <line x1="80" y1="-40" x2="80" y2="40" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+    <line x1="-40" y1="80" x2="40" y2="80" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.5"/>
+  </g>
+</svg>

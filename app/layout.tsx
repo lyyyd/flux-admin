@@ -17,8 +17,22 @@ const META_THEME_COLORS = {
 };
 
 export const metadata: Metadata = {
-  title: "Next Shadcn",
-  description: "Basic dashboard with Next.js and Shadcn"
+  title: "Flux Admin",
+  description:
+    "A modern Next.js admin dashboard and SaaS platform with shadcn/ui",
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png"
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Flux Admin"
+  },
+  formatDetection: {
+    telephone: false
+  }
 };
 
 export const viewport: Viewport = {

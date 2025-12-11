@@ -52,6 +52,7 @@ export default function Providers({
               appearance={{
                 baseTheme: resolvedTheme === "dark" ? dark : undefined
               }}
+              telemetry={false}
             >
               {children}
             </ClerkProvider>

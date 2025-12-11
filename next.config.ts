@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import withPWA from "next-pwa";
 
 // Define the base Next.js configuration
 const baseConfig: NextConfig = {
@@ -27,7 +28,14 @@ const baseConfig: NextConfig = {
   turbopack: {}
 };
 
-let configWithPlugins = baseConfig;
+const pwaConfig = withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development"
+});
+
+let configWithPlugins = pwaConfig(baseConfig);
 
 // Conditionally enable Sentry configuration
 if (!process.env.NEXT_PUBLIC_SENTRY_DISABLED) {
