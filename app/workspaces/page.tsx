@@ -25,8 +25,8 @@ export default function WorkspacesPage() {
               "text-sm text-muted-foreground"
           }
         }}
-        afterSelectOrganizationUrl="/dashboard/workspaces/team"
-        afterCreateOrganizationUrl="/dashboard/workspaces/team"
+        afterSelectOrganizationUrl="/workspaces/team"
+        afterCreateOrganizationUrl="/workspaces/team"
       />
     </PageContainer>
   );

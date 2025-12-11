@@ -92,7 +92,7 @@ export function OrgSwitcher() {
         <SidebarMenuItem>
           <SidebarMenuButton
             size="lg"
-            onClick={() => router.push("/dashboard/workspaces")}
+            onClick={() => router.push("/workspaces")}
             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
           >
             <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 shrink-0 items-center justify-center overflow-hidden rounded-lg">
@@ -224,7 +224,7 @@ export function OrgSwitcher() {
             <DropdownMenuItem
               className="gap-2 p-2"
               onClick={() => {
-                router.push("/dashboard/workspaces");
+                router.push("/workspaces");
               }}
             >
               <div className="flex size-6 items-center justify-center rounded-md border bg-transparent">

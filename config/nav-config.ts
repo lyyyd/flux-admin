@@ -35,11 +35,116 @@ import { NavItem } from "@/types";
 export const navItems: NavItem[] = [
   {
     title: "Dashboard",
-    url: "/dashboard/overview",
+    url: "/overview",
     icon: "dashboard",
     isActive: true,
     shortcut: ["d", "d"],
     items: []
+  },
+  {
+    title: "Workspaces",
+    url: "/workspaces",
+    icon: "workspace",
+    isActive: false,
+    items: []
+  },
+  {
+    title: "Teams",
+    url: "/workspaces/team",
+    icon: "teams",
+    isActive: false,
+    items: [],
+    // Require organization to be active
+    access: { requireOrg: true }
+    // Alternative: require specific permission
+    // access: { requireOrg: true, permission: 'org:teams:view' }
+  },
+  {
+    title: "Product",
+    url: "/product",
+    icon: "product",
+    shortcut: ["p", "p"],
+    isActive: false,
+    items: []
+  },
+  {
+    title: "Kanban",
+    url: "/kanban",
+    icon: "kanban",
+    shortcut: ["k", "k"],
+    isActive: false,
+    items: []
+  },
+  {
+    title: "Examples",
+    url: "#",
+    icon: "dashboard",
+    isActive: false,
+    items: [
+      {
+        title: "Dashboard",
+        url: "/examples-dashboard",
+        icon: "dashboard"
+      },
+      {
+        title: "Apps",
+        url: "/apps",
+        icon: "apps"
+      },
+      {
+        title: "Chats",
+        url: "/chats",
+        icon: "chats"
+      },
+      {
+        title: "Help Center",
+        url: "/help-center",
+        icon: "helpCenter"
+      },
+      {
+        title: "Tasks",
+        url: "/tasks",
+        icon: "tasks"
+      },
+      {
+        title: "Users",
+        url: "/users",
+        icon: "users"
+      }
+    ]
+  },
+  {
+    title: "Settings",
+    url: "/settings",
+    icon: "settings",
+    isActive: false,
+    items: [
+      {
+        title: "Profile",
+        url: "/settings",
+        icon: "profile"
+      },
+      {
+        title: "Account",
+        url: "/settings/account",
+        icon: "account"
+      },
+      {
+        title: "Appearance",
+        url: "/settings/appearance",
+        icon: "settings"
+      },
+      {
+        title: "Notifications",
+        url: "/settings/notifications",
+        icon: "settings"
+      },
+      {
+        title: "Display",
+        url: "/settings/display",
+        icon: "settings"
+      }
+    ]
   },
   {
     title: "Auth",
@@ -82,135 +187,30 @@ export const navItems: NavItem[] = [
     items: [
       {
         title: "401 - Unauthorized",
-        url: "/dashboard/errors/401",
+        url: "/errors/401",
         icon: "error401"
       },
       {
         title: "403 - Forbidden",
-        url: "/dashboard/errors/403",
+        url: "/errors/403",
         icon: "error403"
       },
       {
         title: "404 - Not Found",
-        url: "/dashboard/errors/404",
+        url: "/errors/404",
         icon: "error404"
       },
       {
         title: "500 - Server Error",
-        url: "/dashboard/errors/500",
+        url: "/errors/500",
         icon: "error500"
       },
       {
         title: "503 - Maintenance",
-        url: "/dashboard/errors/503",
+        url: "/errors/503",
         icon: "error503"
       }
     ]
-  },
-  {
-    title: "Examples",
-    url: "#",
-    icon: "dashboard",
-    isActive: false,
-    items: [
-      {
-        title: "Dashboard",
-        url: "/dashboard/examples",
-        icon: "dashboard"
-      },
-      {
-        title: "Apps",
-        url: "/dashboard/examples/apps",
-        icon: "apps"
-      },
-      {
-        title: "Chats",
-        url: "/dashboard/examples/chats",
-        icon: "chats"
-      },
-      {
-        title: "Help Center",
-        url: "/dashboard/examples/help-center",
-        icon: "helpCenter"
-      },
-      {
-        title: "Tasks",
-        url: "/dashboard/examples/tasks",
-        icon: "tasks"
-      },
-      {
-        title: "Users",
-        url: "/dashboard/examples/users",
-        icon: "users"
-      }
-    ]
-  },
-  {
-    title: "Settings",
-    url: "/dashboard/examples/settings",
-    icon: "settings",
-    isActive: false,
-    items: [
-      {
-        title: "Profile",
-        url: "/dashboard/examples/settings",
-        icon: "profile"
-      },
-      {
-        title: "Account",
-        url: "/dashboard/examples/settings/account",
-        icon: "account"
-      },
-      {
-        title: "Appearance",
-        url: "/dashboard/examples/settings/appearance",
-        icon: "settings"
-      },
-      {
-        title: "Notifications",
-        url: "/dashboard/examples/settings/notifications",
-        icon: "settings"
-      },
-      {
-        title: "Display",
-        url: "/dashboard/examples/settings/display",
-        icon: "settings"
-      }
-    ]
-  },
-  {
-    title: "Workspaces",
-    url: "/dashboard/workspaces",
-    icon: "workspace",
-    isActive: false,
-    items: []
-  },
-  {
-    title: "Teams",
-    url: "/dashboard/workspaces/team",
-    icon: "teams",
-    isActive: false,
-    items: [],
-    // Require organization to be active
-    access: { requireOrg: true }
-    // Alternative: require specific permission
-    // access: { requireOrg: true, permission: 'org:teams:view' }
-  },
-  {
-    title: "Product",
-    url: "/dashboard/product",
-    icon: "product",
-    shortcut: ["p", "p"],
-    isActive: false,
-    items: []
-  },
-  {
-    title: "Kanban",
-    url: "/dashboard/kanban",
-    icon: "kanban",
-    shortcut: ["k", "k"],
-    isActive: false,
-    items: []
   },
   {
     title: "Pro",
@@ -220,7 +220,7 @@ export const navItems: NavItem[] = [
     items: [
       {
         title: "Exclusive",
-        url: "/dashboard/exclusive",
+        url: "/exclusive",
         icon: "exclusive",
         shortcut: ["m", "m"]
       }
@@ -234,13 +234,13 @@ export const navItems: NavItem[] = [
     items: [
       {
         title: "Profile",
-        url: "/dashboard/profile",
+        url: "/profile",
         icon: "profile",
         shortcut: ["m", "m"]
       },
       {
         title: "Billing",
-        url: "/dashboard/billing",
+        url: "/billing",
         icon: "billing",
         shortcut: ["b", "b"],
         // Only show billing if in organization context
