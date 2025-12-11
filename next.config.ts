@@ -22,7 +22,9 @@ const baseConfig: NextConfig = {
       }
     ]
   },
-  transpilePackages: ["geist"]
+  transpilePackages: ["geist"],
+  // Enable Turbopack configuration to silence warnings
+  turbopack: {}
 };
 
 let configWithPlugins = baseConfig;
