@@ -49,7 +49,10 @@ import {
   IconMessage,
   IconHelp,
   IconChecklist,
-  IconUsersGroup
+  IconUsersGroup,
+  IconComponents,
+  IconList,
+  IconCalendar
 } from "@tabler/icons-react";
 
 export type Icon = React.ComponentType<IconProps>;
@@ -106,5 +109,8 @@ export const Icons = {
   chats: IconMessage,
   helpCenter: IconHelp,
   tasks: IconChecklist,
-  users: IconUsersGroup
+  users: IconUsersGroup,
+  components: IconComponents,
+  list: IconList,
+  calendar: IconCalendar
 };

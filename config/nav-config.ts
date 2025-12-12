@@ -76,6 +76,27 @@ export const navItems: NavItem[] = [
     items: []
   },
   {
+    title: "Components",
+    url: "#",
+    icon: "components",
+    shortcut: ["c", "c"],
+    isActive: false,
+    items: [
+      {
+        title: "Cascader",
+        url: "/components/cascader",
+        icon: "list",
+        shortcut: ["c", "a"]
+      },
+      {
+        title: "DatePicker",
+        url: "/components/date-picker",
+        icon: "calendar",
+        shortcut: ["c", "d"]
+      }
+    ]
+  },
+  {
     title: "Examples",
     url: "#",
     icon: "dashboard",

@@ -20,7 +20,6 @@ import {
   SidebarMenuItem,
   useSidebar
 } from "@/components/ui/sidebar";
-import { useEffect } from "react";
 
 export function OrgSwitcher() {
   const { isMobile, state } = useSidebar();

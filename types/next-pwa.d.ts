@@ -9,7 +9,7 @@ declare module "next-pwa" {
     sw?: string;
     scope?: string;
     reloadOnOnline?: boolean;
-    runtimeCaching?: any[];
+    runtimeCaching?: Array<Record<string, unknown>>;
     publicExcludes?: string[];
     buildExcludes?: string[];
     dynamicStartUrl?: boolean;

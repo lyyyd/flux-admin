@@ -13,6 +13,24 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // For dev: allow manual token for testing
+    const devToken = process.env.DEV_X_AUTH_TOKEN;
+    if (devToken && process.env.NODE_ENV !== "production") {
+      const cookieStore = await cookies();
+      cookieStore.set("X-AUTH-TOKEN", devToken, {
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
+        maxAge: 7 * 24 * 60 * 60,
+        path: "/"
+      });
+      return NextResponse.json({
+        code: 0,
+        message: "Dev login successful (manual token)",
+        data: { token: devToken }
+      });
+    }
+
     // 调用后端登录接口
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_API_URL;
     const response = await fetch(`${backendUrl}/oauth/login`, {
