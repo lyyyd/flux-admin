@@ -1,18 +1,62 @@
-import { buttonVariants } from "@/components/ui/button";
+"use client";
+
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { PasswordInput } from "@/components/password-input";
 import { cn } from "@/lib/utils";
 import { SignIn as ClerkSignInForm } from "@clerk/nextjs";
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { IconStar } from "@tabler/icons-react";
-import { Metadata } from "next";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { InteractiveGridPattern } from "./interactive-grid";
-
-export const metadata: Metadata = {
-  title: "Authentication",
-  description: "Authentication forms built using the components."
-};
+import { login } from "@/lib/api/auth";
+import { useAuthStore } from "@/lib/store/auth";
 
 export default function SignInViewPage({ stars }: { stars: number }) {
+  const [account, setAccount] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { setToken } = useAuthStore();
+
+  const handleCredentialLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const response = await login({
+        username: account,
+        password: password
+      });
+
+      if (response.code === 0 && response.data?.token) {
+        // 保存 token 到 store
+        setToken(response.data.token);
+
+        // 获取重定向地址，如果没有则跳转到 overview
+        const redirectUrl = searchParams.get("redirect_url") || "/overview";
+        router.push(redirectUrl);
+      } else {
+        setError(response.message || "Invalid credentials");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError(error instanceof Error ? error.message : "An error occurred");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
       <Link
@@ -78,24 +122,239 @@ export default function SignInViewPage({ stars }: { stars: number }) {
               <span className="font-display font-medium">{stars}</span>
             </div>
           </Link>
-          <ClerkSignInForm
-            initialValues={{
-              emailAddress: "your_mail+clerk_test@example.com"
-            }}
-          />
 
-          <p className="text-muted-foreground px-8 text-center text-sm">
-            By clicking continue, you agree to our{" "}
+          {/* 登录方式选择 */}
+          <Tabs defaultValue="credentials" className="w-99">
+            <TabsList className="mb-4 grid w-full grid-cols-2">
+              <TabsTrigger value="credentials">Email & Password</TabsTrigger>
+              <TabsTrigger value="clerk">Clerk Sign In</TabsTrigger>
+            </TabsList>
+
+            {/* 账号密码登录 */}
+            <TabsContent value="credentials" className="mt-0">
+              <Card
+                className="border-none"
+                style={{
+                  boxShadow: `
+                    0px 5px 15px 0px rgba(0, 0, 0, 0.08),
+                    0px 15px 35px -5px rgba(0, 0, 0, 0.2),
+                    0px 0px 0px 1px rgba(0, 0, 0, 0.07)
+                  `
+                }}
+              >
+                <CardHeader className="flex flex-col items-stretch gap-1 pb-6">
+                  <CardTitle
+                    className="m-0 font-bold tracking-tight"
+                    style={{
+                      fontSize: "17px",
+                      fontWeight: 700,
+                      lineHeight: "24px",
+                      color: "rgb(33, 33, 38)"
+                    }}
+                  >
+                    Sign in to My Application
+                  </CardTitle>
+                  <p
+                    className="m-0"
+                    style={{
+                      fontSize: "13px",
+                      fontWeight: 400,
+                      lineHeight: "18px",
+                      color: "rgba(33, 33, 38, 0.65)",
+                      letterSpacing: "normal"
+                    }}
+                  >
+                    Welcome back! Please sign in to continue
+                  </p>
+                </CardHeader>
+                <CardContent className="space-y-5">
+                  <form onSubmit={handleCredentialLogin} className="space-y-4">
+                    <div className="space-y-2">
+                      <Label
+                        htmlFor="account"
+                        style={{
+                          fontSize: "13px",
+                          fontWeight: 500,
+                          lineHeight: "18px",
+                          color: "rgb(33, 33, 38)"
+                        }}
+                      >
+                        Account
+                      </Label>
+                      <Input
+                        id="account"
+                        type="text"
+                        placeholder="Enter account"
+                        value={account}
+                        onChange={(e) => setAccount(e.target.value)}
+                        required
+                        disabled={isLoading}
+                        style={{
+                          fontSize: "13px",
+                          fontWeight: 400,
+                          lineHeight: "18px",
+                          height: "30px",
+                          padding: "6px 12px",
+                          borderRadius: "6px",
+                          color: "rgb(19, 19, 22)"
+                        }}
+                        autoComplete="username"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <Label
+                          htmlFor="password"
+                          style={{
+                            fontSize: "13px",
+                            fontWeight: 500,
+                            lineHeight: "18px",
+                            color: "rgb(33, 33, 38)"
+                          }}
+                        >
+                          Password
+                        </Label>
+                        <Link
+                          href="/forgot-password"
+                          className="hover:underline"
+                          style={{
+                            fontSize: "13px",
+                            fontWeight: 500,
+                            color: "rgb(47, 48, 55)"
+                          }}
+                        >
+                          Forgot password?
+                        </Link>
+                      </div>
+                      <PasswordInput
+                        id="password"
+                        placeholder="Enter password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        disabled={isLoading}
+                        style={{
+                          fontSize: "13px",
+                          fontWeight: 400,
+                          lineHeight: "18px",
+                          height: "30px",
+                          padding: "6px 40px 6px 12px",
+                          borderRadius: "6px",
+                          color: "rgb(19, 19, 22)"
+                        }}
+                        autoComplete="current-password"
+                      />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="remember"
+                        checked={rememberMe}
+                        onCheckedChange={(checked) =>
+                          setRememberMe(checked as boolean)
+                        }
+                        disabled={isLoading}
+                        className="data-[state=checked]:bg-primary"
+                      />
+                      <Label
+                        htmlFor="remember"
+                        className="text-foreground cursor-pointer text-sm font-normal select-none"
+                      >
+                        Keep me signed in
+                      </Label>
+                    </div>
+                    {error && (
+                      <div className="text-sm text-red-600" role="alert">
+                        {error}
+                      </div>
+                    )}
+                    <Button
+                      type="submit"
+                      className="inline-flex w-full items-center justify-center gap-2 border border-solid font-medium transition-all duration-100"
+                      disabled={isLoading}
+                      style={{
+                        margin: 0,
+                        padding: "6px 12px",
+                        borderRadius: "6px",
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        lineHeight: "18px",
+                        letterSpacing: "normal",
+                        outline: 0,
+                        userSelect: "none",
+                        cursor: "pointer",
+                        position: "relative",
+                        isolation: "isolate",
+                        backgroundColor: "#2F3037",
+                        color: "white",
+                        borderColor: "#2F3037"
+                      }}
+                    >
+                      <span>{isLoading ? "Signing in..." : "Continue"}</span>
+                      {!isLoading && (
+                        <svg
+                          width="6"
+                          height="6"
+                          viewBox="0 0 10 10"
+                          fill="none"
+                        >
+                          <path
+                            fill="currentColor"
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="1.5"
+                            d="m7.25 5-3.5-2.25v4.5L7.25 5Z"
+                          />
+                        </svg>
+                      )}
+                    </Button>
+                  </form>
+                  <div
+                    className="pt-2 text-center"
+                    style={{
+                      fontSize: "13px",
+                      color: "rgba(33, 33, 38, 0.65)"
+                    }}
+                  >
+                    Don&apos;t have an account?{" "}
+                    <Link
+                      href="/auth/sign-up"
+                      className="hover:underline"
+                      style={{
+                        fontSize: "13px",
+                        fontWeight: 400,
+                        color: "rgba(33, 33, 38, 0.65)"
+                      }}
+                    >
+                      Sign up
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+
+            {/* Clerk 登录 */}
+            <TabsContent value="clerk" className="mt-0">
+              <ClerkSignInForm
+                initialValues={{
+                  emailAddress: "your_mail+clerk_test@example.com"
+                }}
+              />
+            </TabsContent>
+          </Tabs>
+
+          <p className="text-muted-foreground px-8 text-center text-xs">
+            By continuing, you agree to our{" "}
             <Link
               href="/terms"
-              className="hover:text-primary underline underline-offset-4"
+              className="hover:text-primary font-medium underline underline-offset-4"
             >
               Terms of Service
             </Link>{" "}
             and{" "}
             <Link
               href="/privacy"
-              className="hover:text-primary underline underline-offset-4"
+              className="hover:text-primary font-medium underline underline-offset-4"
             >
               Privacy Policy
             </Link>
