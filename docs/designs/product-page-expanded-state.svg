@@ -1,0 +1,280 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1100" width="1440" height="1100">
+  <defs>
+    <style>
+      .bg-background { fill: #ffffff; }
+      .bg-card { fill: #ffffff; }
+      .bg-muted { fill: #f4f4f5; }
+      .bg-primary { fill: #18181b; }
+      .bg-accent { fill: #f4f4f5; }
+      .bg-sheet { fill: #ffffff; }
+      .text-foreground { fill: #09090b; }
+      .text-muted { fill: #71717a; }
+      .text-primary { fill: #ffffff; }
+      .border { stroke: #e4e4e7; stroke-width: 1; }
+      .border-primary { stroke: #6366f1; stroke-width: 2; }
+      .shadow { filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.05)); }
+      .shadow-lg { filter: drop-shadow(0 10px 15px rgb(0 0 0 / 0.1)); }
+      
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .font-semibold { font-weight: 600; }
+      .font-medium { font-weight: 500; }
+      .text-sm { font-size: 14px; }
+      .text-xs { font-size: 12px; }
+      .text-2xl { font-size: 24px; }
+    </style>
+  </defs>
+
+  <!-- Page Background -->
+  <rect width="1440" height="1100" class="bg-background"/>
+  
+  <!-- Page Container -->
+  <g transform="translate(24, 24)">
+    
+    <!-- Page Header -->
+    <g id="page-header">
+      <text x="0" y="0" class="text-foreground text-2xl font-semibold">Products</text>
+      <text x="0" y="28" class="text-muted text-sm">Manage products with advanced filtering</text>
+      
+      <!-- Add New Button -->
+      <g transform="translate(1270, -10)">
+        <rect width="120" height="40" rx="6" class="bg-primary"/>
+        <text x="20" y="25" class="text-primary text-sm font-medium">+ Add New</text>
+      </g>
+    </g>
+
+    <!-- Main Content Card -->
+    <g transform="translate(0, 80)">
+      <rect width="1392" height="960" rx="8" class="bg-card border shadow"/>
+      
+      <!-- Card Content -->
+      <g transform="translate(24, 24)">
+        
+        <!-- ========== Basic Toolbar ========== -->
+        <g id="basic-toolbar">
+          <!-- Search Input -->
+          <g id="search-input">
+            <rect width="300" height="40" rx="6" class="bg-background border"/>
+            <text x="12" y="25" class="text-muted text-sm">🔍 Search products...</text>
+          </g>
+          
+          <!-- Category Filter -->
+          <g transform="translate(320, 0)">
+            <rect width="200" height="40" rx="6" class="bg-background border"/>
+            <text x="12" y="25" class="text-foreground text-sm">Category</text>
+            <path d="M 180 18 l 4 5 l 4 -5" stroke="#71717a" fill="none" stroke-width="2"/>
+          </g>
+          
+          <!-- Reset Button -->
+          <g transform="translate(540, 0)">
+            <rect width="80" height="40" rx="6" class="bg-background border"/>
+            <text x="20" y="25" class="text-foreground text-sm">Reset</text>
+          </g>
+          
+          <!-- Advanced Filters Button (Active State) -->
+          <g transform="translate(640, 0)">
+            <rect width="160" height="40" rx="6" class="bg-primary"/>
+            <path d="M 16 14 l 4 4 l 8 -8 M 16 22 l 4 4 l 8 -8" stroke="#ffffff" fill="none" stroke-width="2"/>
+            <text x="40" y="25" class="text-primary text-sm font-medium">Advanced Filters</text>
+          </g>
+          
+          <!-- Active Filters Badge -->
+          <g transform="translate(810, 8)">
+            <circle cx="12" cy="12" r="12" fill="#6366f1"/>
+            <text x="12" y="17" text-anchor="middle" class="text-xs" fill="#ffffff">3</text>
+          </g>
+          
+          <!-- View Options -->
+          <g transform="translate(1304, 0)">
+            <rect width="40" height="40" rx="6" class="bg-background border"/>
+            <path d="M 12 12 h 16 M 12 20 h 16 M 12 28 h 16" stroke="#09090b" stroke-width="2"/>
+          </g>
+        </g>
+
+        <!-- ========== Advanced Filters Panel (Expanded) ========== -->
+        <g transform="translate(0, 60)">
+          <rect width="1344" height="200" rx="8" class="bg-sheet border-primary shadow-lg"/>
+          
+          <!-- Panel Content (p-6) -->
+          <g transform="translate(24, 24)">
+            
+            <!-- Title -->
+            <text x="0" y="0" class="text-foreground font-semibold">Advanced Filters</text>
+            
+            <!-- Close Button -->
+            <g transform="translate(1280, -10)">
+              <rect width="32" height="32" rx="4" class="bg-background border"/>
+              <path d="M 10 10 l 12 12 M 22 10 l -12 12" stroke="#71717a" stroke-width="2"/>
+            </g>
+            
+            <!-- Row 1: ID, Type, Status -->
+            <g transform="translate(0, 40)">
+              <!-- Product ID -->
+              <g>
+                <text x="0" y="0" class="text-foreground text-sm font-medium">Product ID</text>
+                <rect y="8" width="260" height="40" rx="6" class="bg-background border"/>
+                <text x="12" y="34" class="text-muted text-sm">Enter ID...</text>
+              </g>
+              
+              <!-- Product Type -->
+              <g transform="translate(280, 0)">
+                <text x="0" y="0" class="text-foreground text-sm font-medium">Product Type</text>
+                <rect y="8" width="260" height="40" rx="6" class="bg-background border"/>
+                <text x="12" y="34" class="text-foreground text-sm">Physical</text>
+                <path d="M 240 26 l 4 5 l 4 -5" stroke="#71717a" fill="none" stroke-width="2"/>
+              </g>
+              
+              <!-- Status -->
+              <g transform="translate(560, 0)">
+                <text x="0" y="0" class="text-foreground text-sm font-medium">Status</text>
+                <rect y="8" width="260" height="40" rx="6" class="bg-background border"/>
+                <text x="12" y="34" class="text-foreground text-sm">Active</text>
+                <path d="M 240 26 l 4 5 l 4 -5" stroke="#71717a" fill="none" stroke-width="2"/>
+              </g>
+              
+              <!-- Supplier -->
+              <g transform="translate(840, 0)">
+                <text x="0" y="0" class="text-foreground text-sm font-medium">Supplier</text>
+                <rect y="8" width="260" height="40" rx="6" class="bg-background border"/>
+                <text x="12" y="34" class="text-muted text-sm">Select supplier...</text>
+                <path d="M 240 26 l 4 5 l 4 -5" stroke="#71717a" fill="none" stroke-width="2"/>
+              </g>
+            </g>
+            
+            <!-- Row 2: Price Range, Stock, Created Date -->
+            <g transform="translate(0, 116)">
+              <!-- Price Range -->
+              <g>
+                <text x="0" y="0" class="text-foreground text-sm font-medium">Price Range</text>
+                <g transform="translate(0, 8)">
+                  <rect width="120" height="40" rx="6" class="bg-background border"/>
+                  <text x="12" y="26" class="text-muted text-sm">Min</text>
+                  <text x="70" y="26" class="text-foreground text-sm">$0</text>
+                </g>
+                <text x="130" y="34" class="text-muted">-</text>
+                <g transform="translate(140, 8)">
+                  <rect width="120" height="40" rx="6" class="bg-background border"/>
+                  <text x="12" y="26" class="text-muted text-sm">Max</text>
+                  <text x="60" y="26" class="text-foreground text-sm">$999</text>
+                </g>
+              </g>
+              
+              <!-- Stock Status -->
+              <g transform="translate(280, 0)">
+                <text x="0" y="0" class="text-foreground text-sm font-medium">Stock</text>
+                <rect y="8" width="260" height="40" rx="6" class="bg-background border"/>
+                <text x="12" y="34" class="text-foreground text-sm">In Stock</text>
+                <path d="M 240 26 l 4 5 l 4 -5" stroke="#71717a" fill="none" stroke-width="2"/>
+              </g>
+              
+              <!-- Created Date Range -->
+              <g transform="translate(560, 0)">
+                <text x="0" y="0" class="text-foreground text-sm font-medium">Created Date</text>
+                <g transform="translate(0, 8)">
+                  <rect width="250" height="40" rx="6" class="bg-background border"/>
+                  <text x="12" y="26" class="text-muted text-sm">📅 Start Date</text>
+                </g>
+              </g>
+              
+              <g transform="translate(830, 8)">
+                <text x="0" y="18" class="text-muted">~</text>
+              </g>
+              
+              <g transform="translate(850, 8)">
+                <rect width="250" height="40" rx="6" class="bg-background border"/>
+                <text x="12" y="26" class="text-muted text-sm">📅 End Date</text>
+              </g>
+            </g>
+            
+          </g>
+          
+          <!-- Actions Footer (bottom-right) -->
+          <g transform="translate(1080, 152)">
+            <rect width="100" height="36" rx="6" class="bg-background border"/>
+            <text x="25" y="23" class="text-foreground text-sm">Clear All</text>
+          </g>
+          
+          <g transform="translate(1200, 152)">
+            <rect width="120" height="36" rx="6" class="bg-primary"/>
+            <text x="30" y="23" class="text-primary text-sm font-medium">Apply Filters</text>
+          </g>
+        </g>
+
+        <!-- ========== Active Filters Tags ========== -->
+        <g transform="translate(0, 280)">
+          <text x="0" y="0" class="text-muted text-xs">Active Filters:</text>
+          
+          <!-- Tag 1 -->
+          <g transform="translate(100, -12)">
+            <rect width="140" height="28" rx="14" fill="#ede9fe" stroke="#a78bfa" stroke-width="1"/>
+            <text x="12" y="18" class="text-sm" fill="#5b21b6">Status: Active</text>
+            <circle cx="125" cy="14" r="8" fill="#5b21b6"/>
+            <path d="M 122 11 l 6 6 M 128 11 l -6 6" stroke="#ffffff" stroke-width="1.5"/>
+          </g>
+          
+          <!-- Tag 2 -->
+          <g transform="translate(250, -12)">
+            <rect width="160" height="28" rx="14" fill="#ede9fe" stroke="#a78bfa" stroke-width="1"/>
+            <text x="12" y="18" class="text-sm" fill="#5b21b6">Price: $0-$999</text>
+            <circle cx="145" cy="14" r="8" fill="#5b21b6"/>
+            <path d="M 142 11 l 6 6 M 148 11 l -6 6" stroke="#ffffff" stroke-width="1.5"/>
+          </g>
+          
+          <!-- Tag 3 -->
+          <g transform="translate(420, -12)">
+            <rect width="150" height="28" rx="14" fill="#ede9fe" stroke="#a78bfa" stroke-width="1"/>
+            <text x="12" y="18" class="text-sm" fill="#5b21b6">Stock: In Stock</text>
+            <circle cx="135" cy="14" r="8" fill="#5b21b6"/>
+            <path d="M 132 11 l 6 6 M 138 11 l -6 6" stroke="#ffffff" stroke-width="1.5"/>
+          </g>
+        </g>
+
+        <!-- ========== Data Table ========== -->
+        <g transform="translate(0, 320)">
+          <!-- Table Header -->
+          <g id="table-header">
+            <rect width="1344" height="48" class="bg-muted"/>
+            <g class="text-foreground text-sm font-medium">
+              <text x="16" y="30">IMAGE</text>
+              <text x="140" y="30">Name ↕</text>
+              <text x="420" y="30">Category ↕</text>
+              <text x="640" y="30">PRICE</text>
+              <text x="840" y="30">DESCRIPTION</text>
+              <text x="1280" y="30">ACTIONS</text>
+            </g>
+          </g>
+          
+          <!-- Sample Row -->
+          <g transform="translate(0, 48)">
+            <rect width="1344" height="80" fill="#ffffff" class="border"/>
+            <rect x="16" y="16" width="80" height="48" rx="4" fill="#e4e4e7"/>
+            <text x="140" y="44" class="text-foreground text-sm">Modern Chair</text>
+            <text x="640" y="44" class="text-foreground text-sm">$299.99</text>
+          </g>
+          
+          <g transform="translate(0, 128)">
+            <rect width="1344" height="80" fill="#fafafa" class="border"/>
+            <rect x="16" y="16" width="80" height="48" rx="4" fill="#e4e4e7"/>
+            <text x="140" y="44" class="text-foreground text-sm">Smart Lamp</text>
+            <text x="640" y="44" class="text-foreground text-sm">$89.99</text>
+          </g>
+        </g>
+
+        <!-- Pagination -->
+        <g transform="translate(0, 800)">
+          <text x="0" y="20" class="text-muted text-sm">Rows per page:</text>
+          <g transform="translate(120, 0)">
+            <rect width="80" height="36" rx="4" class="bg-background border"/>
+            <text x="20" y="23" class="text-foreground text-sm">10</text>
+          </g>
+          <text x="240" y="20" class="text-muted text-sm">Showing filtered results: 12 items</text>
+        </g>
+
+      </g>
+    </g>
+
+    <!-- Annotation -->
+    <text x="696" y="1080" text-anchor="middle" class="text-xs" fill="#6366f1">
+      State 2: Expanded - Advanced filters panel with multiple fields and active filter tags
+    </text>
+  </g>
+</svg>

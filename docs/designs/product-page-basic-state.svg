@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1000" width="1440" height="1000">
+  <defs>
+    <style>
+      .bg-background { fill: #ffffff; }
+      .bg-card { fill: #ffffff; }
+      .bg-muted { fill: #f4f4f5; }
+      .bg-primary { fill: #18181b; }
+      .bg-accent { fill: #f4f4f5; }
+      .text-foreground { fill: #09090b; }
+      .text-muted { fill: #71717a; }
+      .text-primary { fill: #ffffff; }
+      .border { stroke: #e4e4e7; stroke-width: 1; }
+      .border-primary { stroke: #18181b; stroke-width: 2; }
+      .shadow { filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.05)); }
+      .shadow-lg { filter: drop-shadow(0 10px 15px rgb(0 0 0 / 0.1)); }
+      
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+      .font-semibold { font-weight: 600; }
+      .font-medium { font-weight: 500; }
+      .text-sm { font-size: 14px; }
+      .text-xs { font-size: 12px; }
+      .text-2xl { font-size: 24px; }
+    </style>
+  </defs>
+
+  <!-- Page Background -->
+  <rect width="1440" height="1000" class="bg-background"/>
+  
+  <!-- Page Container -->
+  <g transform="translate(24, 24)">
+    
+    <!-- Page Header -->
+    <g id="page-header">
+      <text x="0" y="0" class="text-foreground text-2xl font-semibold">Products</text>
+      <text x="0" y="28" class="text-muted text-sm">Manage products with advanced filtering</text>
+      
+      <!-- Add New Button -->
+      <g transform="translate(1270, -10)">
+        <rect width="120" height="40" rx="6" class="bg-primary"/>
+        <text x="20" y="25" class="text-primary text-sm font-medium">+ Add New</text>
+      </g>
+    </g>
+
+    <!-- Main Content Card -->
+    <g transform="translate(0, 80)">
+      <rect width="1392" height="860" rx="8" class="bg-card border shadow"/>
+      
+      <!-- Card Content -->
+      <g transform="translate(24, 24)">
+        
+        <!-- ========== Basic Toolbar (Always Visible) ========== -->
+        <g id="basic-toolbar">
+          <!-- Search Input -->
+          <g id="search-input">
+            <rect width="300" height="40" rx="6" class="bg-background border"/>
+            <text x="12" y="25" class="text-muted text-sm">🔍 Search products...</text>
+          </g>
+          
+          <!-- Category Filter -->
+          <g transform="translate(320, 0)">
+            <rect width="200" height="40" rx="6" class="bg-background border"/>
+            <text x="12" y="25" class="text-foreground text-sm">Category</text>
+            <path d="M 180 18 l 4 5 l 4 -5" stroke="#71717a" fill="none" stroke-width="2"/>
+          </g>
+          
+          <!-- Reset Button -->
+          <g transform="translate(540, 0)">
+            <rect width="80" height="40" rx="6" class="bg-background border"/>
+            <text x="20" y="25" class="text-foreground text-sm">Reset</text>
+          </g>
+          
+          <!-- Advanced Filters Button (NEW) -->
+          <g transform="translate(640, 0)">
+            <rect width="160" height="40" rx="6" class="bg-accent border"/>
+            <path d="M 16 14 l 4 4 l 8 -8 M 16 22 l 4 4 l 8 -8" stroke="#09090b" fill="none" stroke-width="2"/>
+            <text x="40" y="25" class="text-foreground text-sm font-medium">Advanced Filters</text>
+          </g>
+          
+          <!-- Active Filters Badge -->
+          <g transform="translate(810, 8)">
+            <circle cx="12" cy="12" r="12" fill="#6366f1"/>
+            <text x="12" y="17" text-anchor="middle" class="text-xs" fill="#ffffff">3</text>
+          </g>
+          
+          <!-- View Options -->
+          <g transform="translate(1304, 0)">
+            <rect width="40" height="40" rx="6" class="bg-background border"/>
+            <path d="M 12 12 h 16 M 12 20 h 16 M 12 28 h 16" stroke="#09090b" stroke-width="2"/>
+          </g>
+        </g>
+
+        <!-- ========== Advanced Filters Panel (Collapsed State) ========== -->
+        <g transform="translate(0, 60)">
+          <text x="0" y="0" class="text-muted text-xs">Click "Advanced Filters" to expand additional options</text>
+        </g>
+
+        <!-- ========== Data Table ========== -->
+        <g transform="translate(0, 90)">
+          <!-- Table Header -->
+          <g id="table-header">
+            <rect width="1344" height="48" class="bg-muted"/>
+            <g class="text-foreground text-sm font-medium">
+              <text x="16" y="30">IMAGE</text>
+              <text x="140" y="30">Name ↕</text>
+              <text x="420" y="30">Category ↕</text>
+              <text x="640" y="30">PRICE</text>
+              <text x="840" y="30">DESCRIPTION</text>
+              <text x="1280" y="30">ACTIONS</text>
+            </g>
+          </g>
+          
+          <!-- Sample Rows -->
+          <g transform="translate(0, 48)">
+            <rect width="1344" height="80" fill="#ffffff" class="border"/>
+            <rect x="16" y="16" width="80" height="48" rx="4" fill="#e4e4e7"/>
+            <text x="140" y="44" class="text-foreground text-sm">Modern Chair</text>
+            <g transform="translate(420, 28)">
+              <rect width="100" height="28" rx="14" fill="#f4f4f5" class="border"/>
+              <text x="20" y="19" class="text-foreground text-xs">Furniture</text>
+            </g>
+            <text x="640" y="44" class="text-foreground text-sm">$299.99</text>
+            <text x="840" y="44" class="text-muted text-sm">Ergonomic design...</text>
+          </g>
+          
+          <g transform="translate(0, 128)">
+            <rect width="1344" height="80" fill="#fafafa" class="border"/>
+            <rect x="16" y="16" width="80" height="48" rx="4" fill="#e4e4e7"/>
+            <text x="140" y="44" class="text-foreground text-sm">Smart Lamp</text>
+            <g transform="translate(420, 28)">
+              <rect width="100" height="28" rx="14" fill="#f4f4f5" class="border"/>
+              <text x="20" y="19" class="text-foreground text-xs">Electronics</text>
+            </g>
+            <text x="640" y="44" class="text-foreground text-sm">$89.99</text>
+            <text x="840" y="44" class="text-muted text-sm">LED lighting...</text>
+          </g>
+
+          <g transform="translate(0, 208)">
+            <rect width="1344" height="80" fill="#ffffff" class="border"/>
+            <rect x="16" y="16" width="80" height="48" rx="4" fill="#e4e4e7"/>
+            <text x="140" y="44" class="text-foreground text-sm">Coffee Maker</text>
+            <g transform="translate(420, 28)">
+              <rect width="100" height="28" rx="14" fill="#f4f4f5" class="border"/>
+              <text x="20" y="19" class="text-foreground text-xs">Appliances</text>
+            </g>
+            <text x="640" y="44" class="text-foreground text-sm">$149.99</text>
+            <text x="840" y="44" class="text-muted text-sm">Automatic brewing...</text>
+          </g>
+        </g>
+
+        <!-- Pagination -->
+        <g transform="translate(0, 700)">
+          <text x="0" y="20" class="text-muted text-sm">Rows per page:</text>
+          <g transform="translate(120, 0)">
+            <rect width="80" height="36" rx="4" class="bg-background border"/>
+            <text x="20" y="23" class="text-foreground text-sm">10</text>
+          </g>
+          <text x="240" y="20" class="text-muted text-sm">Page 1 of 25</text>
+        </g>
+
+      </g>
+    </g>
+
+    <!-- Annotation -->
+    <text x="696" y="980" text-anchor="middle" class="text-xs" fill="#6366f1">
+      State 1: Collapsed - Clean toolbar with Advanced Filters button
+    </text>
+  </g>
+</svg>
