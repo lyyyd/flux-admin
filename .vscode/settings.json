@@ -1,0 +1,18 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "${capture}.js, ${capture}.*.ts, ${capture}.*.js",
+    "*.tsx": "${capture}.ts, ${capture}.*.tsx, ${capture}.*.ts",
+    "*.js": "${capture}.js.map, ${capture}.*.js, ${capture}_*.js",
+    "*.jsx": "${capture}.js, ${capture}.*.jsx, ${capture}_*.jsx",
+    "tsconfig.json": "tsconfig.*.json, tsconfig.tsbuildinfo",
+    "package.json": "package-lock.json, pnpm-lock.yaml, yarn.lock, .npmrc, .nvmrc, .yarnrc.yml, bun.lockb",
+    ".env": ".env.*, env.example.txt",
+    ".gitignore": ".gitattributes, .gitmodules, .gitmessage, .mailmap, .git-blame*",
+    "eslint.config.*": "eslint.*, .eslint*, .prettierrc*, .prettierignore, biome.json, biome.jsonc",
+    "next.config.*": "next-env.d.ts, .env, .env.*, env.example.txt",
+    "README*": "AUTHORS, BACKERS*, CHANGELOG*, CITATION*, CODE_OF_CONDUCT*, CODEOWNERS, CONTRIBUTING*, CONTRIBUTORS, COPYING*, CREDITS, Dockerfile*, FUNDING*, GOVERNANCE.md, HISTORY.md, LICENSE*, MAINTAINERS, Makefile, PERFORMANCE.md, RELEASE_NOTES*, SECURITY.md, SPONSORS*",
+    "components.json": "tailwind.config.*, postcss.config.*"
+  }
+}
